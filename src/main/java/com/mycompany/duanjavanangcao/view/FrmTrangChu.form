@@ -72,7 +72,7 @@
     <Container class="javax.swing.JPanel" name="pnlHeader">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="8a" green="3a" red="1e" type="rgb"/>
+          <Color blue="5d" green="36" red="17" type="rgb"/>
         </Property>
       </Properties>
 
@@ -115,7 +115,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="H&#x1ec6; TH&#x1ed0;NG QU&#x1ea2;N L&#xdd; &#x110;I&#x1ec2;M SINH VI&#xca;N - UTT"/>
+            <Property name="text" type="java.lang.String" value="TR&#x1af;&#x1edc;NG &#x110;&#x1ea0;I H&#x1ecc;C C&#xd4;NG NGH&#x1ec6; GTVT - C&#x1ed4;NG QU&#x1ea2;N L&#xdd; &#x110;&#xc0;O T&#x1ea0;O"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblNguoiDung">
@@ -154,11 +154,14 @@
     </Container>
     <Container class="javax.swing.JPanel" name="pnlQuanLy">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="5d" green="36" red="17" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="QU&#x1ea2;N L&#xdd; DANH M&#x1ee4;C (ADMIN)">
               <Font PropertyName="font" name="Segoe UI" size="13" style="1"/>
-              <Color PropertyName="color" blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color PropertyName="color" blue="28" green="8c" red="f2" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -208,13 +211,13 @@
         <Component class="javax.swing.JButton" name="btnQLSinhVien">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Sinh vi&#xea;n"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -229,13 +232,13 @@
         <Component class="javax.swing.JButton" name="btnQLGiangVien">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Gi&#x1ea3;ng vi&#xea;n"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -250,13 +253,13 @@
         <Component class="javax.swing.JButton" name="btnQLLop">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; L&#x1edb;p h&#x1ecd;c"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -271,13 +274,13 @@
         <Component class="javax.swing.JButton" name="btnQLMonHoc">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; M&#xf4;n h&#x1ecd;c"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -292,13 +295,13 @@
         <Component class="javax.swing.JButton" name="btnQLHocKy">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; H&#x1ecd;c k&#x1ef3;"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -313,13 +316,13 @@
         <Component class="javax.swing.JButton" name="btnQLLopHocPhan">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; L&#x1edb;p h&#x1ecd;c ph&#x1ea7;n"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -334,13 +337,13 @@
         <Component class="javax.swing.JButton" name="btnQLTaiKhoan">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; T&#xe0;i kho&#x1ea3;n"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -356,11 +359,14 @@
     </Container>
     <Container class="javax.swing.JPanel" name="pnlNghiepVu">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="5d" green="36" red="17" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
             <TitledBorder title="NGHI&#x1ec6;P V&#x1ee4; H&#x1ecc;C V&#x1ee4; &amp; &#x110;I&#x1ec2;M">
               <Font PropertyName="font" name="Segoe UI" size="13" style="1"/>
-              <Color PropertyName="color" blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color PropertyName="color" blue="28" green="8c" red="f2" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -410,13 +416,13 @@
         <Component class="javax.swing.JButton" name="btnNhapDiem">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Nh&#x1ead;p &#x111;i&#x1ec3;m h&#x1ecd;c ph&#x1ea7;n"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -431,13 +437,13 @@
         <Component class="javax.swing.JButton" name="btnDangKyHocPhan">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x103;ng k&#xfd; h&#x1ecd;c ph&#x1ea7;n"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -452,13 +458,13 @@
         <Component class="javax.swing.JButton" name="btnTraCuuDiem">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Tra c&#x1ee9;u &#x111;i&#x1ec3;m sinh vi&#xea;n"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -473,13 +479,13 @@
         <Component class="javax.swing.JButton" name="btnKetQuaGPA">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="K&#x1ebf;t qu&#x1ea3; h&#x1ecd;c t&#x1ead;p &amp; GPA"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -494,13 +500,13 @@
         <Component class="javax.swing.JButton" name="btnPhucKhao">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Ph&#xfa;c kh&#x1ea3;o &#x111;i&#x1ec3;m"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -515,13 +521,13 @@
         <Component class="javax.swing.JButton" name="btnCanhCao">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="C&#x1ea3;nh b&#xe1;o h&#x1ecd;c t&#x1ead;p"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -536,13 +542,13 @@
         <Component class="javax.swing.JButton" name="btnThongKe">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f9" green="f5" red="f1" type="rgb"/>
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="12" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color blue="5d" green="36" red="17" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea; &amp; B&#xe1;o c&#xe1;o"/>
             <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -558,11 +564,14 @@
     </Container>
     <Container class="javax.swing.JPanel" name="pnlThongKe">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="TH&#x1ed0;NG K&#xca; T&#x1ed4;NG QUAN H&#x1ec6; TH&#x1ed0;NG">
+            <TitledBorder title="CH&#x1ec8; S&#x1ed0; TH&#x1ed0;NG K&#xca; T&#x1ed4;NG QUAN H&#x1ec6; TH&#x1ed0;NG">
               <Font PropertyName="font" name="Segoe UI" size="13" style="1"/>
-              <Color PropertyName="color" blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color PropertyName="color" blue="5d" green="36" red="17" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -572,16 +581,16 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Component id="lblStatSV" min="-2" pref="110" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="lblStatGV" min="-2" pref="110" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="lblStatLop" min="-2" pref="110" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="lblStatMon" min="-2" pref="110" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                  <Component id="lblStatLHP" min="-2" pref="110" max="-2" attributes="0"/>
+                  <Component id="lblStatSV" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="lblStatGV" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="lblStatLop" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="lblStatMon" min="-2" pref="120" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                  <Component id="lblStatLHP" min="-2" pref="120" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -589,15 +598,15 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="lblStatSV" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblStatGV" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblStatLop" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblStatMon" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="lblStatLHP" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblStatSV" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="lblStatGV" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="lblStatLop" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="lblStatMon" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
+                      <Component id="lblStatLHP" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -662,11 +671,14 @@
     </Container>
     <Container class="javax.swing.JPanel" name="pnlThongBao">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="B&#x1ea2;NG TIN TH&#xd4;NG B&#xc1;O">
+            <TitledBorder title="B&#x1ea2;NG TIN TH&#xd4;NG B&#xc1;O &#x110;&#xc0;O T&#x1ea0;O &amp; H&#x1ecc;C V&#x1ee4;">
               <Font PropertyName="font" name="Segoe UI" size="13" style="1"/>
-              <Color PropertyName="color" blue="8a" green="3a" red="1e" type="rgb"/>
+              <Color PropertyName="color" blue="5d" green="36" red="17" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -761,7 +773,7 @@
         <Component class="javax.swing.JButton" name="btnLamMoiThongBao">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="f0" green="e8" red="e2" type="rgb"/>
+              <Color blue="f9" green="f5" red="f1" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="13" style="1"/>

@@ -27,12 +27,24 @@ public class FrmTrangChu extends javax.swing.JFrame {
      */
     public FrmTrangChu() {
         initComponents();
-        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        getContentPane().setBackground(new java.awt.Color(244, 247, 251));
+
+        // Tùy chỉnh trực quan cho các thẻ thống kê tổng quan (Stat Cards)
+        javax.swing.border.Border cardBorder = javax.swing.BorderFactory.createCompoundBorder(
+                javax.swing.BorderFactory.createLineBorder(new java.awt.Color(216, 224, 234), 1),
+                javax.swing.BorderFactory.createEmptyBorder(4, 6, 4, 6));
+        java.awt.Color cardBg = new java.awt.Color(248, 250, 252);
+
+        for (javax.swing.JLabel lbl : new javax.swing.JLabel[]{lblStatSV, lblStatGV, lblStatLop, lblStatMon, lblStatLHP}) {
+            lbl.setOpaque(true);
+            lbl.setBackground(cardBg);
+            lbl.setBorder(cardBorder);
+            lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        }
+
+        // Định dạng bảng thông báo chuẩn phong cách UTT
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblThongBao);
-        pnlThongKe.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
-        pnlQuanLy.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
-        pnlNghiepVu.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
-        pnlThongBao.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+
         this.setLocationRelativeTo(null);
         this.thongKeDAO = new ThongKeDAO();
         this.thongBaoDAO = new ThongBaoDAO();
@@ -116,11 +128,11 @@ public class FrmTrangChu extends javax.swing.JFrame {
      */
     public void taiThongKe() {
         Map<String, Integer> stats = thongKeDAO.getThongKeTongQuan();
-        lblStatSV.setText("Sinh viên: " + stats.getOrDefault("SoSV", 0));
-        lblStatGV.setText("Giảng viên: " + stats.getOrDefault("SoGV", 0));
-        lblStatLop.setText("Lớp học: " + stats.getOrDefault("SoLop", 0));
-        lblStatMon.setText("Môn học: " + stats.getOrDefault("SoMon", 0));
-        lblStatLHP.setText("Lớp HP: " + stats.getOrDefault("SoLHP", 0));
+        lblStatSV.setText("<html><center><div style='font-size:10px;color:#64748B;'>SINH VIÊN</div><div style='font-size:15px;font-weight:bold;color:#2563EB;margin-top:2px;'>" + stats.getOrDefault("SoSV", 0) + "</div></center></html>");
+        lblStatGV.setText("<html><center><div style='font-size:10px;color:#64748B;'>GIẢNG VIÊN</div><div style='font-size:15px;font-weight:bold;color:#15803D;margin-top:2px;'>" + stats.getOrDefault("SoGV", 0) + "</div></center></html>");
+        lblStatLop.setText("<html><center><div style='font-size:10px;color:#64748B;'>LỚP HỌC</div><div style='font-size:15px;font-weight:bold;color:#17365D;margin-top:2px;'>" + stats.getOrDefault("SoLop", 0) + "</div></center></html>");
+        lblStatMon.setText("<html><center><div style='font-size:10px;color:#64748B;'>MÔN HỌC</div><div style='font-size:15px;font-weight:bold;color:#D97706;margin-top:2px;'>" + stats.getOrDefault("SoMon", 0) + "</div></center></html>");
+        lblStatLHP.setText("<html><center><div style='font-size:10px;color:#64748B;'>LỚP HỌC PHẦN</div><div style='font-size:15px;font-weight:bold;color:#F28C28;margin-top:2px;'>" + stats.getOrDefault("SoLHP", 0) + "</div></center></html>");
     }
 
     /**
@@ -202,11 +214,11 @@ public class FrmTrangChu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TRANG CHỦ - HỆ THỐNG QUẢN LÝ ĐIỂM SINH VIÊN");
 
-        pnlHeader.setBackground(new java.awt.Color(30, 58, 138));
+        pnlHeader.setBackground(new java.awt.Color(23, 54, 93));
 
         lblTieuDe.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblTieuDe.setForeground(new java.awt.Color(255, 255, 255));
-        lblTieuDe.setText("HỆ THỐNG QUẢN LÝ ĐIỂM SINH VIÊN - UTT");
+        lblTieuDe.setText("TRƯỜNG ĐẠI HỌC CÔNG NGHỆ GTVT - CỔNG QUẢN LÝ ĐÀO TẠO");
 
         lblNguoiDung.setFont(new java.awt.Font("Segoe UI", 2, 13)); // NOI18N
         lblNguoiDung.setForeground(new java.awt.Color(219, 234, 254));
@@ -249,11 +261,12 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        pnlQuanLy.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "QUẢN LÝ DANH MỤC (ADMIN)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(30, 58, 138))); // NOI18N
+        pnlQuanLy.setBackground(new java.awt.Color(23, 54, 93));
+        pnlQuanLy.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "QUẢN LÝ DANH MỤC (ADMIN)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(242, 140, 40))); // NOI18N
 
-        btnQLSinhVien.setBackground(new java.awt.Color(241, 245, 249));
+        btnQLSinhVien.setBackground(new java.awt.Color(255, 255, 255));
         btnQLSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLSinhVien.setForeground(new java.awt.Color(30, 58, 138));
+        btnQLSinhVien.setForeground(new java.awt.Color(23, 54, 93));
         btnQLSinhVien.setText("Quản lý Sinh viên");
         btnQLSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLSinhVien.setFocusPainted(false);
@@ -263,9 +276,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnQLGiangVien.setBackground(new java.awt.Color(241, 245, 249));
+        btnQLGiangVien.setBackground(new java.awt.Color(255, 255, 255));
         btnQLGiangVien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLGiangVien.setForeground(new java.awt.Color(30, 58, 138));
+        btnQLGiangVien.setForeground(new java.awt.Color(23, 54, 93));
         btnQLGiangVien.setText("Quản lý Giảng viên");
         btnQLGiangVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLGiangVien.setFocusPainted(false);
@@ -275,9 +288,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnQLLop.setBackground(new java.awt.Color(241, 245, 249));
+        btnQLLop.setBackground(new java.awt.Color(255, 255, 255));
         btnQLLop.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLLop.setForeground(new java.awt.Color(30, 58, 138));
+        btnQLLop.setForeground(new java.awt.Color(23, 54, 93));
         btnQLLop.setText("Quản lý Lớp học");
         btnQLLop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLLop.setFocusPainted(false);
@@ -287,9 +300,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnQLMonHoc.setBackground(new java.awt.Color(241, 245, 249));
+        btnQLMonHoc.setBackground(new java.awt.Color(255, 255, 255));
         btnQLMonHoc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLMonHoc.setForeground(new java.awt.Color(30, 58, 138));
+        btnQLMonHoc.setForeground(new java.awt.Color(23, 54, 93));
         btnQLMonHoc.setText("Quản lý Môn học");
         btnQLMonHoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLMonHoc.setFocusPainted(false);
@@ -299,9 +312,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnQLHocKy.setBackground(new java.awt.Color(241, 245, 249));
+        btnQLHocKy.setBackground(new java.awt.Color(255, 255, 255));
         btnQLHocKy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLHocKy.setForeground(new java.awt.Color(30, 58, 138));
+        btnQLHocKy.setForeground(new java.awt.Color(23, 54, 93));
         btnQLHocKy.setText("Quản lý Học kỳ");
         btnQLHocKy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLHocKy.setFocusPainted(false);
@@ -311,9 +324,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnQLLopHocPhan.setBackground(new java.awt.Color(241, 245, 249));
+        btnQLLopHocPhan.setBackground(new java.awt.Color(255, 255, 255));
         btnQLLopHocPhan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLLopHocPhan.setForeground(new java.awt.Color(30, 58, 138));
+        btnQLLopHocPhan.setForeground(new java.awt.Color(23, 54, 93));
         btnQLLopHocPhan.setText("Quản lý Lớp học phần");
         btnQLLopHocPhan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLLopHocPhan.setFocusPainted(false);
@@ -323,9 +336,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnQLTaiKhoan.setBackground(new java.awt.Color(241, 245, 249));
+        btnQLTaiKhoan.setBackground(new java.awt.Color(255, 255, 255));
         btnQLTaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLTaiKhoan.setForeground(new java.awt.Color(30, 58, 138));
+        btnQLTaiKhoan.setForeground(new java.awt.Color(23, 54, 93));
         btnQLTaiKhoan.setText("Quản lý Tài khoản");
         btnQLTaiKhoan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnQLTaiKhoan.setFocusPainted(false);
@@ -371,11 +384,12 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        pnlNghiepVu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NGHIỆP VỤ HỌC VỤ & ĐIỂM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(30, 58, 138))); // NOI18N
+        pnlNghiepVu.setBackground(new java.awt.Color(23, 54, 93));
+        pnlNghiepVu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NGHIỆP VỤ HỌC VỤ & ĐIỂM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(242, 140, 40))); // NOI18N
 
-        btnNhapDiem.setBackground(new java.awt.Color(241, 245, 249));
+        btnNhapDiem.setBackground(new java.awt.Color(255, 255, 255));
         btnNhapDiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnNhapDiem.setForeground(new java.awt.Color(30, 58, 138));
+        btnNhapDiem.setForeground(new java.awt.Color(23, 54, 93));
         btnNhapDiem.setText("Nhập điểm học phần");
         btnNhapDiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNhapDiem.setFocusPainted(false);
@@ -385,9 +399,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnDangKyHocPhan.setBackground(new java.awt.Color(241, 245, 249));
+        btnDangKyHocPhan.setBackground(new java.awt.Color(255, 255, 255));
         btnDangKyHocPhan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDangKyHocPhan.setForeground(new java.awt.Color(30, 58, 138));
+        btnDangKyHocPhan.setForeground(new java.awt.Color(23, 54, 93));
         btnDangKyHocPhan.setText("Đăng ký học phần");
         btnDangKyHocPhan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangKyHocPhan.setFocusPainted(false);
@@ -397,9 +411,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnTraCuuDiem.setBackground(new java.awt.Color(241, 245, 249));
+        btnTraCuuDiem.setBackground(new java.awt.Color(255, 255, 255));
         btnTraCuuDiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnTraCuuDiem.setForeground(new java.awt.Color(30, 58, 138));
+        btnTraCuuDiem.setForeground(new java.awt.Color(23, 54, 93));
         btnTraCuuDiem.setText("Tra cứu điểm sinh viên");
         btnTraCuuDiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnTraCuuDiem.setFocusPainted(false);
@@ -409,9 +423,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnKetQuaGPA.setBackground(new java.awt.Color(241, 245, 249));
+        btnKetQuaGPA.setBackground(new java.awt.Color(255, 255, 255));
         btnKetQuaGPA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnKetQuaGPA.setForeground(new java.awt.Color(30, 58, 138));
+        btnKetQuaGPA.setForeground(new java.awt.Color(23, 54, 93));
         btnKetQuaGPA.setText("Kết quả học tập & GPA");
         btnKetQuaGPA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnKetQuaGPA.setFocusPainted(false);
@@ -421,9 +435,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnPhucKhao.setBackground(new java.awt.Color(241, 245, 249));
+        btnPhucKhao.setBackground(new java.awt.Color(255, 255, 255));
         btnPhucKhao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnPhucKhao.setForeground(new java.awt.Color(30, 58, 138));
+        btnPhucKhao.setForeground(new java.awt.Color(23, 54, 93));
         btnPhucKhao.setText("Phúc khảo điểm");
         btnPhucKhao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPhucKhao.setFocusPainted(false);
@@ -433,9 +447,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnCanhCao.setBackground(new java.awt.Color(241, 245, 249));
+        btnCanhCao.setBackground(new java.awt.Color(255, 255, 255));
         btnCanhCao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCanhCao.setForeground(new java.awt.Color(30, 58, 138));
+        btnCanhCao.setForeground(new java.awt.Color(23, 54, 93));
         btnCanhCao.setText("Cảnh báo học tập");
         btnCanhCao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnCanhCao.setFocusPainted(false);
@@ -445,9 +459,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnThongKe.setBackground(new java.awt.Color(241, 245, 249));
+        btnThongKe.setBackground(new java.awt.Color(255, 255, 255));
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnThongKe.setForeground(new java.awt.Color(30, 58, 138));
+        btnThongKe.setForeground(new java.awt.Color(23, 54, 93));
         btnThongKe.setText("Thống kê & Báo cáo");
         btnThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThongKe.setFocusPainted(false);
@@ -493,7 +507,8 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        pnlThongKe.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THỐNG KÊ TỔNG QUAN HỆ THỐNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(30, 58, 138))); // NOI18N
+        pnlThongKe.setBackground(new java.awt.Color(255, 255, 255));
+        pnlThongKe.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "CHỈ SỐ THỐNG KÊ TỔNG QUAN HỆ THỐNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(23, 54, 93))); // NOI18N
 
         lblStatSV.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         lblStatSV.setForeground(new java.awt.Color(37, 99, 235));
@@ -520,32 +535,33 @@ public class FrmTrangChu extends javax.swing.JFrame {
         pnlThongKeLayout.setHorizontalGroup(
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlThongKeLayout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(lblStatSV, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
-                .addComponent(lblStatGV, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(lblStatLop, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(lblStatMon, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addComponent(lblStatLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblStatSV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblStatGV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblStatLop, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblStatMon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblStatLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlThongKeLayout.setVerticalGroup(
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlThongKeLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
+                .addGap(8, 8, 8)
                 .addGroup(pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStatSV)
-                    .addComponent(lblStatGV)
-                    .addComponent(lblStatLop)
-                    .addComponent(lblStatMon)
-                    .addComponent(lblStatLHP))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(lblStatSV, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatGV, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatLop, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatMon, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        pnlThongBao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BẢNG TIN THÔNG BÁO", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(30, 58, 138))); // NOI18N
+        pnlThongBao.setBackground(new java.awt.Color(255, 255, 255));
+        pnlThongBao.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "BẢNG TIN THÔNG BÁO ĐÀO TẠO & HỌC VỤ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(23, 54, 93))); // NOI18N
 
         tblThongBao.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         tblThongBao.setModel(new javax.swing.table.DefaultTableModel(
@@ -581,7 +597,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
-        btnLamMoiThongBao.setBackground(new java.awt.Color(226, 232, 240));
+        btnLamMoiThongBao.setBackground(new java.awt.Color(241, 245, 249));
         btnLamMoiThongBao.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnLamMoiThongBao.setForeground(new java.awt.Color(31, 41, 55));
         btnLamMoiThongBao.setText("Làm mới");
