@@ -18,6 +18,9 @@ public class FrmQLMonHoc extends javax.swing.JFrame {
 
     public FrmQLMonHoc() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblMonHoc);
         this.setLocationRelativeTo(null);
         this.monHocDAO = new MonHocDAO();
 

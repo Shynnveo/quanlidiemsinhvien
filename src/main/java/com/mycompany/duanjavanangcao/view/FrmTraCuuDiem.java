@@ -30,6 +30,11 @@ public class FrmTraCuuDiem extends javax.swing.JFrame {
 
     public FrmTraCuuDiem() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlTongKet.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblBangDiem);
+        this.setLocationRelativeTo(null);
         khoiTaoDuLieu();
     }
 

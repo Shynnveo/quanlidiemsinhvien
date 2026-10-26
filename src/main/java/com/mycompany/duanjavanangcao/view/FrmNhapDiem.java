@@ -38,6 +38,11 @@ public class FrmNhapDiem extends javax.swing.JFrame {
 
     public FrmNhapDiem() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlBoLoc.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlNhapDiem.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblBangDiem);
+        this.setLocationRelativeTo(null);
         khoiTaoDuLieu();
     }
 

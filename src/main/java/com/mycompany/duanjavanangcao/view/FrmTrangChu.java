@@ -27,6 +27,12 @@ public class FrmTrangChu extends javax.swing.JFrame {
      */
     public FrmTrangChu() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblThongBao);
+        pnlThongKe.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlQuanLy.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlNghiepVu.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlThongBao.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         this.setLocationRelativeTo(null);
         this.thongKeDAO = new ThongKeDAO();
         this.thongBaoDAO = new ThongBaoDAO();

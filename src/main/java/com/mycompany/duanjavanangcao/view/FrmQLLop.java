@@ -18,6 +18,9 @@ public class FrmQLLop extends javax.swing.JFrame {
 
     public FrmQLLop() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblLop);
         this.setLocationRelativeTo(null);
         this.lopDAO = new LopDAO();
 

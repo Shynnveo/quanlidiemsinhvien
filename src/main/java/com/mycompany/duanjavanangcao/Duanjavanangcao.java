@@ -1,5 +1,6 @@
 package com.mycompany.duanjavanangcao;
 
+import com.mycompany.duanjavanangcao.util.UIThemeUtil;
 import com.mycompany.duanjavanangcao.view.FrmDangNhap;
 
 /**
@@ -8,16 +9,8 @@ import com.mycompany.duanjavanangcao.view.FrmDangNhap;
 public class Duanjavanangcao {
 
     public static void main(String[] args) {
-        // Thiết lập giao diện hệ thống Nimbus / System L&F
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (Exception ignored) {
-        }
+        // Thiết lập phong cách giao diện cổng quản lý đại học UTT
+        UIThemeUtil.applyGlobalTheme();
 
         // Khởi chạy màn hình đăng nhập
         java.awt.EventQueue.invokeLater(() -> {

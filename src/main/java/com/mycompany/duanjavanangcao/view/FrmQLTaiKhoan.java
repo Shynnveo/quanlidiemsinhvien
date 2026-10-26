@@ -23,6 +23,11 @@ public class FrmQLTaiKhoan extends javax.swing.JFrame {
      */
     public FrmQLTaiKhoan() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlBoLoc.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlDanhSach.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlChiTiet.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblTaiKhoan);
         this.setLocationRelativeTo(null);
         this.taiKhoanDAO = new TaiKhoanDAO();
         this.danhSachTaiKhoan = new ArrayList<>();
@@ -359,7 +364,7 @@ public class FrmQLTaiKhoan extends javax.swing.JFrame {
             }
         });
 
-        btnKhoaMoKhoa.setBackground(new java.awt.Color(217, 119, 6));
+        btnKhoaMoKhoa.setBackground(new java.awt.Color(242, 140, 40));
         btnKhoaMoKhoa.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         btnKhoaMoKhoa.setForeground(new java.awt.Color(255, 255, 255));
         btnKhoaMoKhoa.setText("Khóa / Mở khóa");

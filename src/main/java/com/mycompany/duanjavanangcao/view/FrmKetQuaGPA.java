@@ -34,6 +34,12 @@ public class FrmKetQuaGPA extends javax.swing.JFrame {
 
     public FrmKetQuaGPA() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlBoLoc.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlChiTiet.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblKetQua);
+        btnTinhGPA.setBackground(new java.awt.Color(242, 140, 40)); // Cam UTT nổi bật
+        this.setLocationRelativeTo(null);
         khoiTaoDuLieu();
     }
 

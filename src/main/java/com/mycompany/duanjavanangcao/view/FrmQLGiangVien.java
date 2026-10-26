@@ -18,6 +18,9 @@ public class FrmQLGiangVien extends javax.swing.JFrame {
 
     public FrmQLGiangVien() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblGiangVien);
         this.setLocationRelativeTo(null);
         this.giangVienDAO = new GiangVienDAO();
 

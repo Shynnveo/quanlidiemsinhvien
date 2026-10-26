@@ -32,6 +32,14 @@ public class FrmPhucKhao extends javax.swing.JFrame {
      */
     public FrmPhucKhao() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlBoLoc.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlDanhSach.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlThaoTac.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlGuiDon.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlXuLy.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblPhucKhao);
+        btnGuiDon.setBackground(new java.awt.Color(242, 140, 40)); // Cam UTT nổi bật
         this.setLocationRelativeTo(null);
         this.phucKhaoDAO = new PhucKhaoDAO();
         this.sinhVienDAO = new SinhVienDAO();

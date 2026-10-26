@@ -33,6 +33,10 @@ public class FrmQLLopHocPhan extends javax.swing.JFrame {
 
     public FrmQLLopHocPhan() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlTimKiem.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblLopHocPhan);
         this.setLocationRelativeTo(null);
         this.lhpDAO = new LopHocPhanDAO();
         this.monHocDAO = new MonHocDAO();

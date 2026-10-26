@@ -19,6 +19,9 @@ public class FrmQLHocKy extends javax.swing.JFrame {
 
     public FrmQLHocKy() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblHocKy);
         this.setLocationRelativeTo(null);
         this.hocKyDAO = new HocKyDAO();
 

@@ -24,6 +24,10 @@ public class FrmQLSinhVien extends javax.swing.JFrame {
 
     public FrmQLSinhVien() {
         initComponents();
+        getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
+        pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        pnlLoc.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblSinhVien);
         this.setLocationRelativeTo(null);
         this.sinhVienDAO = new SinhVienDAO();
         this.lopDAO = new LopDAO();

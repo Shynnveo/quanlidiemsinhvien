@@ -18,6 +18,7 @@ public class FrmDangKyTaiKhoan extends javax.swing.JFrame {
      */
     public FrmDangKyTaiKhoan() {
         initComponents();
+        getContentPane().setBackground(new java.awt.Color(244, 247, 251));
         this.setLocationRelativeTo(null); // Hiển thị giữa màn hình
         this.dangKyService = new DangKyService();
     }
@@ -86,7 +87,7 @@ public class FrmDangKyTaiKhoan extends javax.swing.JFrame {
         lblLuuY.setForeground(new java.awt.Color(100, 116, 139));
         lblLuuY.setText("(*) Mỗi sinh viên chỉ được đăng ký 1 tài khoản duy nhất.");
 
-        btnDangKy.setBackground(new java.awt.Color(21, 128, 61));
+        btnDangKy.setBackground(new java.awt.Color(242, 140, 40));
         btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDangKy.setForeground(new java.awt.Color(255, 255, 255));
         btnDangKy.setText("Đăng ký tài khoản");
