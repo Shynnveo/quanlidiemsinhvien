@@ -44,6 +44,19 @@ public class FrmTrangChu extends javax.swing.JFrame {
 
         // Định dạng bảng thông báo chuẩn phong cách UTT
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblThongBao);
+        if (tblThongBao.getColumnModel().getColumnCount() >= 4) {
+            tblThongBao.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblThongBao.getColumnModel().getColumn(0).setMaxWidth(60);
+            tblThongBao.getColumnModel().getColumn(1).setPreferredWidth(320);
+            tblThongBao.getColumnModel().getColumn(2).setPreferredWidth(120);
+            tblThongBao.getColumnModel().getColumn(3).setPreferredWidth(140);
+
+            javax.swing.table.DefaultTableCellRenderer centerRenderer = new javax.swing.table.DefaultTableCellRenderer();
+            centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
+            tblThongBao.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+            tblThongBao.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+            tblThongBao.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
+        }
         com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
 
         this.setLocationRelativeTo(null);
@@ -129,11 +142,11 @@ public class FrmTrangChu extends javax.swing.JFrame {
      */
     public void taiThongKe() {
         Map<String, Integer> stats = thongKeDAO.getThongKeTongQuan();
-        lblStatSV.setText("<html><center><div style='font-size:10px;color:#64748B;'>SINH VIÊN</div><div style='font-size:15px;font-weight:bold;color:#2563EB;margin-top:2px;'>" + stats.getOrDefault("SoSV", 0) + "</div></center></html>");
-        lblStatGV.setText("<html><center><div style='font-size:10px;color:#64748B;'>GIẢNG VIÊN</div><div style='font-size:15px;font-weight:bold;color:#15803D;margin-top:2px;'>" + stats.getOrDefault("SoGV", 0) + "</div></center></html>");
-        lblStatLop.setText("<html><center><div style='font-size:10px;color:#64748B;'>LỚP HỌC</div><div style='font-size:15px;font-weight:bold;color:#17365D;margin-top:2px;'>" + stats.getOrDefault("SoLop", 0) + "</div></center></html>");
-        lblStatMon.setText("<html><center><div style='font-size:10px;color:#64748B;'>MÔN HỌC</div><div style='font-size:15px;font-weight:bold;color:#D97706;margin-top:2px;'>" + stats.getOrDefault("SoMon", 0) + "</div></center></html>");
-        lblStatLHP.setText("<html><center><div style='font-size:10px;color:#64748B;'>LỚP HỌC PHẦN</div><div style='font-size:15px;font-weight:bold;color:#F28C28;margin-top:2px;'>" + stats.getOrDefault("SoLHP", 0) + "</div></center></html>");
+        lblStatSV.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>SINH VIÊN</div><div style='font-size:18px;font-weight:bold;color:#2563EB;margin-top:3px;'>" + stats.getOrDefault("SoSV", 0) + "</div></center></html>");
+        lblStatGV.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>GIẢNG VIÊN</div><div style='font-size:18px;font-weight:bold;color:#15803D;margin-top:3px;'>" + stats.getOrDefault("SoGV", 0) + "</div></center></html>");
+        lblStatLop.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>LỚP HỌC</div><div style='font-size:18px;font-weight:bold;color:#17365D;margin-top:3px;'>" + stats.getOrDefault("SoLop", 0) + "</div></center></html>");
+        lblStatMon.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>MÔN HỌC</div><div style='font-size:18px;font-weight:bold;color:#D97706;margin-top:3px;'>" + stats.getOrDefault("SoMon", 0) + "</div></center></html>");
+        lblStatLHP.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>LỚP HỌC PHẦN</div><div style='font-size:18px;font-weight:bold;color:#F28C28;margin-top:3px;'>" + stats.getOrDefault("SoLHP", 0) + "</div></center></html>");
     }
 
     /**

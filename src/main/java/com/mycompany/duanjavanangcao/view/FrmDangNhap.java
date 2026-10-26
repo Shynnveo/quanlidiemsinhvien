@@ -51,7 +51,7 @@ public class FrmDangNhap extends javax.swing.JFrame {
         setTitle("ĐĂNG NHẬP HỆ THỐNG QUẢN LÝ ĐIỂM - UTT");
         setResizable(false);
 
-        pnlBrand.setBackground(new java.awt.Color(30, 58, 138));
+        pnlBrand.setBackground(new java.awt.Color(23, 54, 93));
 
         lblBrandUni.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblBrandUni.setForeground(new java.awt.Color(147, 197, 253));
@@ -153,7 +153,7 @@ public class FrmDangNhap extends javax.swing.JFrame {
             }
         });
 
-        btnDangKy.setBackground(new java.awt.Color(21, 128, 61));
+        btnDangKy.setBackground(new java.awt.Color(242, 140, 40));
         btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDangKy.setForeground(new java.awt.Color(255, 255, 255));
         btnDangKy.setText("Đăng ký tài khoản sinh viên");

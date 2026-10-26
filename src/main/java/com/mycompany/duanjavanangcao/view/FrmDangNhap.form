@@ -46,7 +46,7 @@
     <Container class="javax.swing.JPanel" name="pnlBrand">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="8a" green="3a" red="1e" type="rgb"/>
+          <Color blue="5d" green="36" red="17" type="rgb"/>
         </Property>
       </Properties>
 
@@ -296,7 +296,7 @@
         <Component class="javax.swing.JButton" name="btnDangKy">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="3d" green="80" red="15" type="rgb"/>
+              <Color blue="28" green="8c" red="f2" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="1"/>
