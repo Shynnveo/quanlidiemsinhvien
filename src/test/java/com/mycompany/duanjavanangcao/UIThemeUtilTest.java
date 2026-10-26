@@ -1,7 +1,6 @@
 package com.mycompany.duanjavanangcao;
 
 import com.mycompany.duanjavanangcao.util.UIThemeUtil;
-import com.mycompany.duanjavanangcao.util.UTTButtonUI;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
@@ -16,12 +15,12 @@ public class UIThemeUtilTest {
             UIThemeUtil.applyGlobalTheme();
             System.out.println("[OK] Đã kích hoạt UIThemeUtil.applyGlobalTheme()");
 
-            // 2. Kiểm tra JButton tự động nhận UTTButtonUI
+            // 2. Kiểm tra JButton tự động nhận UIThemeUtil.ButtonUI
             JButton btnTest = new JButton("Test Tự Động");
-            if (btnTest.getUI() instanceof UTTButtonUI) {
-                System.out.println("[OK] JButton tự động nhận UTTButtonUI: " + btnTest.getUI().getClass().getName());
+            if (btnTest.getUI() instanceof UIThemeUtil.ButtonUI) {
+                System.out.println("[OK] JButton tự động nhận UIThemeUtil.ButtonUI: " + btnTest.getUI().getClass().getName());
             } else {
-                throw new RuntimeException("LỖI: JButton không nhận UTTButtonUI mà nhận: " + btnTest.getUI().getClass().getName());
+                throw new RuntimeException("LỖI: JButton không nhận UIThemeUtil.ButtonUI mà nhận: " + btnTest.getUI().getClass().getName());
             }
 
             // 3. Kiểm tra nút Đăng nhập Primary (Xanh dương, chữ trắng)
@@ -94,12 +93,12 @@ public class UIThemeUtilTest {
             com.mycompany.duanjavanangcao.view.FrmDangNhap frmLogin = new com.mycompany.duanjavanangcao.view.FrmDangNhap();
             assertAllButtonsHaveUTTUI(frmLogin.getContentPane(), "FrmDangNhap");
             frmLogin.dispose();
-            System.out.println("[OK] Tất cả JButton trên FrmDangNhap đều sử dụng UTTButtonUI thành công!");
+            System.out.println("[OK] Tất cả JButton trên FrmDangNhap đều sử dụng ButtonUI thành công!");
 
             com.mycompany.duanjavanangcao.view.FrmDangKyTaiKhoan frmRegister = new com.mycompany.duanjavanangcao.view.FrmDangKyTaiKhoan();
             assertAllButtonsHaveUTTUI(frmRegister.getContentPane(), "FrmDangKyTaiKhoan");
             frmRegister.dispose();
-            System.out.println("[OK] Tất cả JButton trên FrmDangKyTaiKhoan đều sử dụng UTTButtonUI thành công!");
+            System.out.println("[OK] Tất cả JButton trên FrmDangKyTaiKhoan đều sử dụng ButtonUI thành công!");
 
             // 7. Kiểm tra không còn hiện tượng chữ cái đầu tiên bị gạch chân (Mnemonic index = -1)
             JButton btnCheckMnemonic = new JButton("Quản lý Sinh viên");
@@ -121,8 +120,8 @@ public class UIThemeUtilTest {
         for (java.awt.Component comp : container.getComponents()) {
             if (comp instanceof JButton) {
                 JButton btn = (JButton) comp;
-                if (!(btn.getUI() instanceof UTTButtonUI)) {
-                    throw new RuntimeException("LỖI: Nút '" + btn.getText() + "' trên " + formName + " không dùng UTTButtonUI mà dùng: " + btn.getUI().getClass().getName());
+                if (!(btn.getUI() instanceof UIThemeUtil.ButtonUI)) {
+                    throw new RuntimeException("LỖI: Nút '" + btn.getText() + "' trên " + formName + " không dùng UIThemeUtil.ButtonUI mà dùng: " + btn.getUI().getClass().getName());
                 }
             } else if (comp instanceof java.awt.Container) {
                 assertAllButtonsHaveUTTUI((java.awt.Container) comp, formName);
