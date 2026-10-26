@@ -37,6 +37,7 @@ public class FrmQLLopHocPhan extends javax.swing.JFrame {
         pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         pnlTimKiem.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblLopHocPhan);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
         this.setLocationRelativeTo(null);
         this.lhpDAO = new LopHocPhanDAO();
         this.monHocDAO = new MonHocDAO();
@@ -604,6 +605,7 @@ public class FrmQLLopHocPhan extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyGlobalTheme();
         java.awt.EventQueue.invokeLater(() -> {
             new FrmQLLopHocPhan().setVisible(true);
         });

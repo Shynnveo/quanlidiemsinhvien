@@ -28,6 +28,7 @@ public class FrmQLTaiKhoan extends javax.swing.JFrame {
         pnlDanhSach.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         pnlChiTiet.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblTaiKhoan);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
         this.setLocationRelativeTo(null);
         this.taiKhoanDAO = new TaiKhoanDAO();
         this.danhSachTaiKhoan = new ArrayList<>();

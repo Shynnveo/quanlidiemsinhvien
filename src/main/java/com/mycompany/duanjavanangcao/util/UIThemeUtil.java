@@ -75,8 +75,99 @@ public class UIThemeUtil {
             javax.swing.UIManager.put("Panel.background", BG_LIGHT);
             javax.swing.UIManager.put("OptionPane.messageFont", FONT_NORMAL);
             javax.swing.UIManager.put("OptionPane.buttonFont", FONT_BUTTON);
+
+            // Khắc phục triệt để lỗi màu sắc JButton trên Windows/Nimbus L&F:
+            // Đăng ký UTTButtonUI toàn cục để vẽ chuẩn màu nền và màu chữ
+            javax.swing.UIManager.getDefaults().put("ClassLoader", UIThemeUtil.class.getClassLoader());
+            javax.swing.UIManager.put("ButtonUI", UTTButtonUI.class.getName());
+            javax.swing.UIManager.getDefaults().put("ButtonUI", UTTButtonUI.class.getName());
         } catch (Exception ignored) {
         }
+    }
+
+    /**
+     * Áp dụng UTTButtonUI thủ công cho một hoặc nhiều JButton
+     */
+    public static void formatButton(JButton... buttons) {
+        if (buttons == null) return;
+        for (JButton btn : buttons) {
+            if (btn != null) {
+                btn.setUI(UTTButtonUI.getSharedInstance());
+            }
+        }
+    }
+
+    /**
+     * Duyệt đệ quy toàn bộ container/JFrame để đảm bảo 100% mọi JButton bên trong
+     * đều sử dụng UTTButtonUI, bảo toàn màu nền và màu chữ UTT sắc nét
+     */
+    public static void applyThemeToContainer(java.awt.Container container) {
+        if (container == null) return;
+        for (Component comp : container.getComponents()) {
+            if (comp instanceof JButton) {
+                JButton btn = (JButton) comp;
+                if (!(btn.getUI() instanceof UTTButtonUI)) {
+                    btn.setUI(UTTButtonUI.getSharedInstance());
+                }
+            } else if (comp instanceof java.awt.Container) {
+                applyThemeToContainer((java.awt.Container) comp);
+            }
+        }
+    }
+
+    /**
+     * Định kiểu nút hành động chính (Xanh dương)
+     */
+    public static void stylePrimaryButton(JButton btn) {
+        if (btn == null) return;
+        btn.setUI(UTTButtonUI.getSharedInstance());
+        btn.setBackground(PRIMARY_BLUE);
+        btn.setForeground(Color.WHITE);
+        btn.setFont(FONT_BUTTON);
+    }
+
+    /**
+     * Định kiểu nút thành công / thêm mới (Xanh lá)
+     */
+    public static void styleSuccessButton(JButton btn) {
+        if (btn == null) return;
+        btn.setUI(UTTButtonUI.getSharedInstance());
+        btn.setBackground(SUCCESS_GREEN);
+        btn.setForeground(Color.WHITE);
+        btn.setFont(FONT_BUTTON);
+    }
+
+    /**
+     * Định kiểu nút cảnh báo / xóa / đăng xuất (Đỏ)
+     */
+    public static void styleDangerButton(JButton btn) {
+        if (btn == null) return;
+        btn.setUI(UTTButtonUI.getSharedInstance());
+        btn.setBackground(DANGER_RED);
+        btn.setForeground(Color.WHITE);
+        btn.setFont(FONT_BUTTON);
+    }
+
+    /**
+     * Định kiểu nút nhấn mạnh / cam (Cam UTT)
+     */
+    public static void styleWarningButton(JButton btn) {
+        if (btn == null) return;
+        btn.setUI(UTTButtonUI.getSharedInstance());
+        btn.setBackground(ORANGE_UTT);
+        btn.setForeground(Color.WHITE);
+        btn.setFont(FONT_BUTTON);
+    }
+
+    /**
+     * Định kiểu nút phụ / neutral (Xám nhạt chữ đậm)
+     */
+    public static void styleNeutralButton(JButton btn) {
+        if (btn == null) return;
+        btn.setUI(UTTButtonUI.getSharedInstance());
+        btn.setBackground(BTN_NEUTRAL_BG);
+        btn.setForeground(TEXT_MAIN);
+        btn.setFont(FONT_BUTTON);
     }
 
     /**

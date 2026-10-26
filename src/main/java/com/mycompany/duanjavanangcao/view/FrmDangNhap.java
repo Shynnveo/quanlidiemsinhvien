@@ -17,6 +17,7 @@ public class FrmDangNhap extends javax.swing.JFrame {
      */
     public FrmDangNhap() {
         initComponents();
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
         this.setLocationRelativeTo(null); // Hiển thị form ở chính giữa màn hình
         this.dangNhapService = new DangNhapService();
     }

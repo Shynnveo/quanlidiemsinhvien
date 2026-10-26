@@ -21,6 +21,7 @@ public class FrmQLGiangVien extends javax.swing.JFrame {
         getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
         pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblGiangVien);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
         this.setLocationRelativeTo(null);
         this.giangVienDAO = new GiangVienDAO();
 
@@ -432,6 +433,7 @@ public class FrmQLGiangVien extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyGlobalTheme();
         java.awt.EventQueue.invokeLater(() -> {
             new FrmQLGiangVien().setVisible(true);
         });

@@ -47,6 +47,7 @@ public class FrmCanhCaoHocTap extends javax.swing.JFrame {
         pnlChiTiet.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblCanhCao);
         btnQuetTuDong.setBackground(new java.awt.Color(242, 140, 40)); // Cam UTT nổi bật
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
         this.setLocationRelativeTo(null);
 
         this.canhCaoDAO = new CanhCaoHocTapDAO();

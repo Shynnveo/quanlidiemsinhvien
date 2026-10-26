@@ -28,6 +28,7 @@ public class FrmQLSinhVien extends javax.swing.JFrame {
         pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         pnlLoc.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblSinhVien);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
         this.setLocationRelativeTo(null);
         this.sinhVienDAO = new SinhVienDAO();
         this.lopDAO = new LopDAO();
@@ -588,6 +589,7 @@ public class FrmQLSinhVien extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyGlobalTheme();
         java.awt.EventQueue.invokeLater(() -> {
             new FrmQLSinhVien().setVisible(true);
         });

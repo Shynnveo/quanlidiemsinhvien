@@ -21,6 +21,7 @@ public class FrmQLLop extends javax.swing.JFrame {
         getContentPane().setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.BG_LIGHT);
         pnlThongTin.setBackground(com.mycompany.duanjavanangcao.util.UIThemeUtil.PANEL_WHITE);
         com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblLop);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
         this.setLocationRelativeTo(null);
         this.lopDAO = new LopDAO();
 
@@ -444,6 +445,7 @@ public class FrmQLLop extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyGlobalTheme();
         java.awt.EventQueue.invokeLater(() -> {
             new FrmQLLop().setVisible(true);
         });
