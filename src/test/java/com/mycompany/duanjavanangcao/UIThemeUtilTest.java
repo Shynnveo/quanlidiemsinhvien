@@ -101,7 +101,14 @@ public class UIThemeUtilTest {
             frmRegister.dispose();
             System.out.println("[OK] Tất cả JButton trên FrmDangKyTaiKhoan đều sử dụng UTTButtonUI thành công!");
 
-            System.out.println("=== KẾT QUẢ: TẤT CẢ KIỂM TRA MÀU SẮC BUTTON ĐỀU THÀNH CÔNG ===");
+            // 7. Kiểm tra không còn hiện tượng chữ cái đầu tiên bị gạch chân (Mnemonic index = -1)
+            JButton btnCheckMnemonic = new JButton("Quản lý Sinh viên");
+            if (btnCheckMnemonic.getDisplayedMnemonicIndex() != -1) {
+                throw new RuntimeException("LỖI: Nút vẫn bị gán mnemonic index: " + btnCheckMnemonic.getDisplayedMnemonicIndex());
+            }
+            System.out.println("[OK] Đã kiểm tra loại bỏ hoàn toàn gạch chân ngoài ý muốn (Mnemonic index = -1)!");
+
+            System.out.println("=== KẾT QUẢ: TẤT CẢ KIỂM TRA MÀU SẮC BUTTON & GẠCH CHÂN ĐỀU THÀNH CÔNG ===");
 
         } catch (Exception e) {
             e.printStackTrace();

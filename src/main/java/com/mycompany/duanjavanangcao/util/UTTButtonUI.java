@@ -101,7 +101,8 @@ public class UTTButtonUI extends BasicButtonUI {
             g2.setColor(fg);
         }
 
-        BasicGraphicsUtils.drawStringUnderlineCharAt(g2, text, b.getMnemonic(),
+        int mnemonicIndex = b.getDisplayedMnemonicIndex();
+        BasicGraphicsUtils.drawStringUnderlineCharAt(g2, text, mnemonicIndex,
                 textRect.x, textRect.y + fm.getAscent());
         g2.dispose();
     }
