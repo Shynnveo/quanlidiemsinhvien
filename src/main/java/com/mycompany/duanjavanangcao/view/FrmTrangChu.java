@@ -96,44 +96,55 @@ public class FrmTrangChu extends javax.swing.JFrame {
     }
 
     /**
-     * Phân quyền hiển thị theo vai trò người dùng
+     * Phân quyền hiển thị theo vai trò người dùng trên JTree
      * @param vaiTro ADMIN, GIANGVIEN, SINHVIEN
      */
     private void phanQuyen(String vaiTro) {
+        javax.swing.tree.DefaultMutableTreeNode root = new javax.swing.tree.DefaultMutableTreeNode("MENU CHỨC NĂNG");
+
+        // Nhóm 1: Quản lý danh mục (chỉ dành cho Quản trị viên ADMIN)
         if ("ADMIN".equalsIgnoreCase(vaiTro)) {
-            // Quản trị viên: Toàn quyền truy cập
-            pnlQuanLy.setVisible(true);
-            btnNhapDiem.setEnabled(true);
-            btnDangKyHocPhan.setEnabled(true);
-            btnTraCuuDiem.setEnabled(true);
-            btnKetQuaGPA.setEnabled(true);
-            btnPhucKhao.setEnabled(true);
-            btnCanhCao.setEnabled(true);
-            btnThongKe.setEnabled(true);
+            javax.swing.tree.DefaultMutableTreeNode nhom1 = new javax.swing.tree.DefaultMutableTreeNode("QUẢN LÝ DANH MỤC (ADMIN)");
+            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Sinh viên"));
+            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Giảng viên"));
+            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Lớp học"));
+            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Môn học"));
+            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Học kỳ"));
+            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Lớp học phần"));
+            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Tài khoản"));
+            root.add(nhom1);
+        }
 
+        // Nhóm 2: Nghiệp vụ học vụ & điểm
+        javax.swing.tree.DefaultMutableTreeNode nhom2 = new javax.swing.tree.DefaultMutableTreeNode("NGHIỆP VỤ HỌC VỤ & ĐIỂM");
+        if ("ADMIN".equalsIgnoreCase(vaiTro)) {
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Nhập điểm học phần"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Đăng ký học phần"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Kết quả học tập & GPA"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Thống kê & Báo cáo"));
         } else if ("GIANGVIEN".equalsIgnoreCase(vaiTro)) {
-            // Giảng viên: Ẩn quản trị danh mục, tập trung nhập điểm và học vụ
-            pnlQuanLy.setVisible(false);
-
-            btnNhapDiem.setEnabled(true);
-            btnDangKyHocPhan.setEnabled(false); // Giảng viên không đăng ký môn
-            btnTraCuuDiem.setEnabled(true);
-            btnKetQuaGPA.setEnabled(false);
-            btnPhucKhao.setEnabled(true);       // Xử lý phúc khảo
-            btnCanhCao.setEnabled(true);       // Xem danh sách cảnh báo
-            btnThongKe.setEnabled(true);
-
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Nhập điểm học phần"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Thống kê & Báo cáo"));
         } else if ("SINHVIEN".equalsIgnoreCase(vaiTro)) {
-            // Sinh viên: Ẩn quản trị danh mục, cấm nhập điểm
-            pnlQuanLy.setVisible(false);
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Đăng ký học phần"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Kết quả học tập & GPA"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm"));
+            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập"));
+        }
+        root.add(nhom2);
 
-            btnNhapDiem.setEnabled(false);      // Sinh viên tuyệt đối không thể sửa điểm
-            btnDangKyHocPhan.setEnabled(true);  // Đăng ký môn
-            btnTraCuuDiem.setEnabled(true);     // Xem điểm
-            btnKetQuaGPA.setEnabled(true);      // Xem GPA
-            btnPhucKhao.setEnabled(true);       // Gửi đơn phúc khảo
-            btnCanhCao.setEnabled(true);       // Xem cảnh báo của bản thân
-            btnThongKe.setEnabled(false);
+        treeMenu.setModel(new javax.swing.tree.DefaultTreeModel(root));
+
+        // Mở rộng toàn bộ các nhánh của cây chức năng
+        for (int i = 0; i < treeMenu.getRowCount(); i++) {
+            treeMenu.expandRow(i);
         }
     }
 
@@ -197,22 +208,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
         lblTieuDe = new javax.swing.JLabel();
         lblNguoiDung = new javax.swing.JLabel();
         btnDangXuat = new javax.swing.JButton();
-        pnlQuanLy = new javax.swing.JPanel();
-        btnQLSinhVien = new javax.swing.JButton();
-        btnQLGiangVien = new javax.swing.JButton();
-        btnQLLop = new javax.swing.JButton();
-        btnQLMonHoc = new javax.swing.JButton();
-        btnQLHocKy = new javax.swing.JButton();
-        btnQLLopHocPhan = new javax.swing.JButton();
-        btnQLTaiKhoan = new javax.swing.JButton();
-        pnlNghiepVu = new javax.swing.JPanel();
-        btnNhapDiem = new javax.swing.JButton();
-        btnDangKyHocPhan = new javax.swing.JButton();
-        btnTraCuuDiem = new javax.swing.JButton();
-        btnKetQuaGPA = new javax.swing.JButton();
-        btnPhucKhao = new javax.swing.JButton();
-        btnCanhCao = new javax.swing.JButton();
-        btnThongKe = new javax.swing.JButton();
+        pnlMenuTree = new javax.swing.JPanel();
+        scrollTree = new javax.swing.JScrollPane();
+        treeMenu = new javax.swing.JTree();
         pnlThongKe = new javax.swing.JPanel();
         lblStatSV = new javax.swing.JLabel();
         lblStatGV = new javax.swing.JLabel();
@@ -275,250 +273,76 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        pnlQuanLy.setBackground(new java.awt.Color(23, 54, 93));
-        pnlQuanLy.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "QUẢN LÝ DANH MỤC (ADMIN)", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(242, 140, 40))); // NOI18N
+        pnlMenuTree.setBackground(new java.awt.Color(255, 255, 255));
+        pnlMenuTree.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ĐIỀU HƯỚNG CHỨC NĂNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(23, 54, 93))); // NOI18N
 
-        btnQLSinhVien.setBackground(new java.awt.Color(255, 255, 255));
-        btnQLSinhVien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLSinhVien.setForeground(new java.awt.Color(23, 54, 93));
-        btnQLSinhVien.setText("Quản lý Sinh viên");
-        btnQLSinhVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQLSinhVien.setFocusPainted(false);
-        btnQLSinhVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLSinhVienActionPerformed(evt);
+        scrollTree.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(216, 224, 234)));
+
+        treeMenu.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("MENU CHỨC NĂNG");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("QUẢN LÝ DANH MỤC (ADMIN)");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Sinh viên");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Giảng viên");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Lớp học");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Môn học");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Học kỳ");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Lớp học phần");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Tài khoản");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("NGHIỆP VỤ HỌC VỤ & ĐIỂM");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Nhập điểm học phần");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Đăng ký học phần");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Kết quả học tập & GPA");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Thống kê & Báo cáo");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeMenu.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treeMenu.setRootVisible(false);
+        treeMenu.setRowHeight(32);
+        treeMenu.setShowsRootHandles(true);
+        treeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                treeMenuMouseClicked(evt);
             }
         });
-
-        btnQLGiangVien.setBackground(new java.awt.Color(255, 255, 255));
-        btnQLGiangVien.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLGiangVien.setForeground(new java.awt.Color(23, 54, 93));
-        btnQLGiangVien.setText("Quản lý Giảng viên");
-        btnQLGiangVien.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQLGiangVien.setFocusPainted(false);
-        btnQLGiangVien.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLGiangVienActionPerformed(evt);
+        treeMenu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                treeMenuKeyPressed(evt);
             }
         });
+        scrollTree.setViewportView(treeMenu);
 
-        btnQLLop.setBackground(new java.awt.Color(255, 255, 255));
-        btnQLLop.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLLop.setForeground(new java.awt.Color(23, 54, 93));
-        btnQLLop.setText("Quản lý Lớp học");
-        btnQLLop.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQLLop.setFocusPainted(false);
-        btnQLLop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLLopActionPerformed(evt);
-            }
-        });
-
-        btnQLMonHoc.setBackground(new java.awt.Color(255, 255, 255));
-        btnQLMonHoc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLMonHoc.setForeground(new java.awt.Color(23, 54, 93));
-        btnQLMonHoc.setText("Quản lý Môn học");
-        btnQLMonHoc.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQLMonHoc.setFocusPainted(false);
-        btnQLMonHoc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLMonHocActionPerformed(evt);
-            }
-        });
-
-        btnQLHocKy.setBackground(new java.awt.Color(255, 255, 255));
-        btnQLHocKy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLHocKy.setForeground(new java.awt.Color(23, 54, 93));
-        btnQLHocKy.setText("Quản lý Học kỳ");
-        btnQLHocKy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQLHocKy.setFocusPainted(false);
-        btnQLHocKy.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLHocKyActionPerformed(evt);
-            }
-        });
-
-        btnQLLopHocPhan.setBackground(new java.awt.Color(255, 255, 255));
-        btnQLLopHocPhan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLLopHocPhan.setForeground(new java.awt.Color(23, 54, 93));
-        btnQLLopHocPhan.setText("Quản lý Lớp học phần");
-        btnQLLopHocPhan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQLLopHocPhan.setFocusPainted(false);
-        btnQLLopHocPhan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLLopHocPhanActionPerformed(evt);
-            }
-        });
-
-        btnQLTaiKhoan.setBackground(new java.awt.Color(255, 255, 255));
-        btnQLTaiKhoan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnQLTaiKhoan.setForeground(new java.awt.Color(23, 54, 93));
-        btnQLTaiKhoan.setText("Quản lý Tài khoản");
-        btnQLTaiKhoan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnQLTaiKhoan.setFocusPainted(false);
-        btnQLTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnQLTaiKhoanActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlQuanLyLayout = new javax.swing.GroupLayout(pnlQuanLy);
-        pnlQuanLy.setLayout(pnlQuanLyLayout);
-        pnlQuanLyLayout.setHorizontalGroup(
-            pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlQuanLyLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnQLSinhVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLGiangVien, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLLop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLMonHoc, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLHocKy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLLopHocPhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnQLTaiKhoan, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
+        javax.swing.GroupLayout pnlMenuTreeLayout = new javax.swing.GroupLayout(pnlMenuTree);
+        pnlMenuTree.setLayout(pnlMenuTreeLayout);
+        pnlMenuTreeLayout.setHorizontalGroup(
+            pnlMenuTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuTreeLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(scrollTree, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
         );
-        pnlQuanLyLayout.setVerticalGroup(
-            pnlQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlQuanLyLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnQLSinhVien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnQLGiangVien, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnQLLop, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnQLMonHoc, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnQLHocKy, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnQLLopHocPhan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnQLTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
-        );
-
-        pnlNghiepVu.setBackground(new java.awt.Color(23, 54, 93));
-        pnlNghiepVu.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "NGHIỆP VỤ HỌC VỤ & ĐIỂM", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(242, 140, 40))); // NOI18N
-
-        btnNhapDiem.setBackground(new java.awt.Color(255, 255, 255));
-        btnNhapDiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnNhapDiem.setForeground(new java.awt.Color(23, 54, 93));
-        btnNhapDiem.setText("Nhập điểm học phần");
-        btnNhapDiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnNhapDiem.setFocusPainted(false);
-        btnNhapDiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNhapDiemActionPerformed(evt);
-            }
-        });
-
-        btnDangKyHocPhan.setBackground(new java.awt.Color(255, 255, 255));
-        btnDangKyHocPhan.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnDangKyHocPhan.setForeground(new java.awt.Color(23, 54, 93));
-        btnDangKyHocPhan.setText("Đăng ký học phần");
-        btnDangKyHocPhan.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnDangKyHocPhan.setFocusPainted(false);
-        btnDangKyHocPhan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDangKyHocPhanActionPerformed(evt);
-            }
-        });
-
-        btnTraCuuDiem.setBackground(new java.awt.Color(255, 255, 255));
-        btnTraCuuDiem.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnTraCuuDiem.setForeground(new java.awt.Color(23, 54, 93));
-        btnTraCuuDiem.setText("Tra cứu điểm sinh viên");
-        btnTraCuuDiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnTraCuuDiem.setFocusPainted(false);
-        btnTraCuuDiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTraCuuDiemActionPerformed(evt);
-            }
-        });
-
-        btnKetQuaGPA.setBackground(new java.awt.Color(255, 255, 255));
-        btnKetQuaGPA.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnKetQuaGPA.setForeground(new java.awt.Color(23, 54, 93));
-        btnKetQuaGPA.setText("Kết quả học tập & GPA");
-        btnKetQuaGPA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnKetQuaGPA.setFocusPainted(false);
-        btnKetQuaGPA.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnKetQuaGPAActionPerformed(evt);
-            }
-        });
-
-        btnPhucKhao.setBackground(new java.awt.Color(255, 255, 255));
-        btnPhucKhao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnPhucKhao.setForeground(new java.awt.Color(23, 54, 93));
-        btnPhucKhao.setText("Phúc khảo điểm");
-        btnPhucKhao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnPhucKhao.setFocusPainted(false);
-        btnPhucKhao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnPhucKhaoActionPerformed(evt);
-            }
-        });
-
-        btnCanhCao.setBackground(new java.awt.Color(255, 255, 255));
-        btnCanhCao.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnCanhCao.setForeground(new java.awt.Color(23, 54, 93));
-        btnCanhCao.setText("Cảnh báo học tập");
-        btnCanhCao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnCanhCao.setFocusPainted(false);
-        btnCanhCao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCanhCaoActionPerformed(evt);
-            }
-        });
-
-        btnThongKe.setBackground(new java.awt.Color(255, 255, 255));
-        btnThongKe.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        btnThongKe.setForeground(new java.awt.Color(23, 54, 93));
-        btnThongKe.setText("Thống kê & Báo cáo");
-        btnThongKe.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnThongKe.setFocusPainted(false);
-        btnThongKe.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnThongKeActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlNghiepVuLayout = new javax.swing.GroupLayout(pnlNghiepVu);
-        pnlNghiepVu.setLayout(pnlNghiepVuLayout);
-        pnlNghiepVuLayout.setHorizontalGroup(
-            pnlNghiepVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNghiepVuLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(pnlNghiepVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnNhapDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnDangKyHocPhan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTraCuuDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnKetQuaGPA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPhucKhao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCanhCao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE))
-                .addContainerGap(15, Short.MAX_VALUE))
-        );
-        pnlNghiepVuLayout.setVerticalGroup(
-            pnlNghiepVuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlNghiepVuLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnNhapDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnDangKyHocPhan, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnTraCuuDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnKetQuaGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnPhucKhao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnCanhCao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(6, 6, 6)
-                .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+        pnlMenuTreeLayout.setVerticalGroup(
+            pnlMenuTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMenuTreeLayout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(scrollTree)
+                .addGap(12, 12, 12))
         );
 
         pnlThongKe.setBackground(new java.awt.Color(255, 255, 255));
@@ -659,9 +483,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(pnlQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlNghiepVu, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE))
+                        .addComponent(pnlMenuTree, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnlThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -679,11 +501,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
                         .addComponent(pnlThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(pnlThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlNghiepVu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(pnlMenuTree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
 
@@ -702,61 +520,122 @@ public class FrmTrangChu extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnDangXuatActionPerformed
 
-    private void btnQLSinhVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLSinhVienActionPerformed
-        new FrmQLSinhVien().setVisible(true);
-    }//GEN-LAST:event_btnQLSinhVienActionPerformed
+    private void treeMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_treeMenuMouseClicked
+        if (evt.getClickCount() == 2 && javax.swing.SwingUtilities.isLeftMouseButton(evt)) {
+            xuLyKichHoatNode();
+        }
+    }//GEN-LAST:event_treeMenuMouseClicked
 
-    private void btnQLGiangVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLGiangVienActionPerformed
-        new FrmQLGiangVien().setVisible(true);
-    }//GEN-LAST:event_btnQLGiangVienActionPerformed
+    private void treeMenuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_treeMenuKeyPressed
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            xuLyKichHoatNode();
+        }
+    }//GEN-LAST:event_treeMenuKeyPressed
 
-    private void btnQLLopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLLopActionPerformed
-        new FrmQLLop().setVisible(true);
-    }//GEN-LAST:event_btnQLLopActionPerformed
+    private void xuLyKichHoatNode() {
+        javax.swing.tree.TreePath path = treeMenu.getSelectionPath();
+        if (path == null) {
+            return;
+        }
+        javax.swing.tree.DefaultMutableTreeNode selectedNode =
+                (javax.swing.tree.DefaultMutableTreeNode) path.getLastPathComponent();
+        if (!selectedNode.isLeaf()) {
+            if (treeMenu.isExpanded(path)) {
+                treeMenu.collapsePath(path);
+            } else {
+                treeMenu.expandPath(path);
+            }
+            return;
+        }
+        String tenChucNang = selectedNode.getUserObject().toString().trim();
+        moChucNangTheoTen(tenChucNang);
+    }
 
-    private void btnQLMonHocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLMonHocActionPerformed
-        new FrmQLMonHoc().setVisible(true);
-    }//GEN-LAST:event_btnQLMonHocActionPerformed
+    private void moChucNangTheoTen(String tenChucNang) {
+        TaiKhoan currentUser = SessionManager.getCurrentUser();
+        String vaiTro = (currentUser != null) ? currentUser.getVaiTro() : "";
 
-    private void btnQLHocKyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLHocKyActionPerformed
-        new FrmQLHocKy().setVisible(true);
-    }//GEN-LAST:event_btnQLHocKyActionPerformed
+        switch (tenChucNang) {
+            case "Quản lý Sinh viên":
+                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLSinhVien().setVisible(true);
+                break;
+            case "Quản lý Giảng viên":
+                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLGiangVien().setVisible(true);
+                break;
+            case "Quản lý Lớp học":
+                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLLop().setVisible(true);
+                break;
+            case "Quản lý Môn học":
+                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLMonHoc().setVisible(true);
+                break;
+            case "Quản lý Học kỳ":
+                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLHocKy().setVisible(true);
+                break;
+            case "Quản lý Lớp học phần":
+                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLLopHocPhan().setVisible(true);
+                break;
+            case "Quản lý Tài khoản":
+                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLTaiKhoan().setVisible(true);
+                break;
+            case "Nhập điểm học phần":
+                if ("SINHVIEN".equalsIgnoreCase(vaiTro)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Sinh viên không có quyền truy cập Nhập điểm!",
+                            "Từ chối", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    new FrmNhapDiem().setVisible(true);
+                }
+                break;
+            case "Đăng ký học phần":
+                if ("GIANGVIEN".equalsIgnoreCase(vaiTro)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Giảng viên không sử dụng chức năng Đăng ký học phần!",
+                            "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    new FrmDangKyHocPhan().setVisible(true);
+                }
+                break;
+            case "Tra cứu điểm sinh viên":
+                new FrmTraCuuDiem().setVisible(true);
+                break;
+            case "Kết quả học tập & GPA":
+                if ("GIANGVIEN".equalsIgnoreCase(vaiTro)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Chức năng này dành cho Sinh viên và Quản trị viên!",
+                            "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                    new FrmKetQuaGPA().setVisible(true);
+                }
+                break;
+            case "Phúc khảo điểm":
+                new FrmPhucKhao().setVisible(true);
+                break;
+            case "Cảnh báo học tập":
+                new FrmCanhCaoHocTap().setVisible(true);
+                break;
+            case "Thống kê & Báo cáo":
+                if ("SINHVIEN".equalsIgnoreCase(vaiTro)) {
+                    JOptionPane.showMessageDialog(this,
+                            "Sinh viên không có quyền truy cập Thống kê & Báo cáo!",
+                            "Từ chối", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    new FrmThongKeBaoCao().setVisible(true);
+                }
+                break;
+            default:
+                break;
+        }
+    }
 
-    private void btnQLLopHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLLopHocPhanActionPerformed
-        new FrmQLLopHocPhan().setVisible(true);
-    }//GEN-LAST:event_btnQLLopHocPhanActionPerformed
-
-    private void btnQLTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQLTaiKhoanActionPerformed
-        new FrmQLTaiKhoan().setVisible(true);
-    }//GEN-LAST:event_btnQLTaiKhoanActionPerformed
-
-    private void btnNhapDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhapDiemActionPerformed
-        new FrmNhapDiem().setVisible(true);
-    }//GEN-LAST:event_btnNhapDiemActionPerformed
-
-    private void btnDangKyHocPhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangKyHocPhanActionPerformed
-        new FrmDangKyHocPhan().setVisible(true);
-    }//GEN-LAST:event_btnDangKyHocPhanActionPerformed
-
-    private void btnTraCuuDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTraCuuDiemActionPerformed
-        new FrmTraCuuDiem().setVisible(true);
-    }//GEN-LAST:event_btnTraCuuDiemActionPerformed
-
-    private void btnKetQuaGPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKetQuaGPAActionPerformed
-        new FrmKetQuaGPA().setVisible(true);
-    }//GEN-LAST:event_btnKetQuaGPAActionPerformed
-
-    private void btnPhucKhaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPhucKhaoActionPerformed
-        new FrmPhucKhao().setVisible(true);
-    }//GEN-LAST:event_btnPhucKhaoActionPerformed
-
-    private void btnCanhCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCanhCaoActionPerformed
-        new FrmCanhCaoHocTap().setVisible(true);
-    }//GEN-LAST:event_btnCanhCaoActionPerformed
-
-    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        new FrmThongKeBaoCao().setVisible(true);
-    }//GEN-LAST:event_btnThongKeActionPerformed
+    private boolean kiemTraQuyenAdmin(String vaiTro) {
+        if (!"ADMIN".equalsIgnoreCase(vaiTro)) {
+            JOptionPane.showMessageDialog(this,
+                    "Chỉ Quản trị viên (ADMIN) mới có quyền truy cập danh mục này!",
+                    "Từ chối truy cập", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+        return true;
+    }
 
     private void btnXemThongBaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXemThongBaoActionPerformed
         int selectedRow = tblThongBao.getSelectedRow();
@@ -800,22 +679,8 @@ public class FrmTrangChu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCanhCao;
-    private javax.swing.JButton btnDangKyHocPhan;
     private javax.swing.JButton btnDangXuat;
-    private javax.swing.JButton btnKetQuaGPA;
     private javax.swing.JButton btnLamMoiThongBao;
-    private javax.swing.JButton btnNhapDiem;
-    private javax.swing.JButton btnPhucKhao;
-    private javax.swing.JButton btnQLGiangVien;
-    private javax.swing.JButton btnQLHocKy;
-    private javax.swing.JButton btnQLLop;
-    private javax.swing.JButton btnQLLopHocPhan;
-    private javax.swing.JButton btnQLMonHoc;
-    private javax.swing.JButton btnQLSinhVien;
-    private javax.swing.JButton btnQLTaiKhoan;
-    private javax.swing.JButton btnThongKe;
-    private javax.swing.JButton btnTraCuuDiem;
     private javax.swing.JButton btnXemThongBao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblNguoiDung;
@@ -826,11 +691,12 @@ public class FrmTrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel lblStatSV;
     private javax.swing.JLabel lblTieuDe;
     private javax.swing.JPanel pnlHeader;
-    private javax.swing.JPanel pnlNghiepVu;
-    private javax.swing.JPanel pnlQuanLy;
+    private javax.swing.JPanel pnlMenuTree;
     private javax.swing.JPanel pnlThongBao;
     private javax.swing.JPanel pnlThongKe;
+    private javax.swing.JScrollPane scrollTree;
     private javax.swing.JTable tblThongBao;
+    private javax.swing.JTree treeMenu;
     // End of variables declaration//GEN-END:variables
 }
 
