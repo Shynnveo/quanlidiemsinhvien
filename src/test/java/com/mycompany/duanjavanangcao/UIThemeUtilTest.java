@@ -87,6 +87,47 @@ public class UIThemeUtilTest {
                 throw new RuntimeException("LỖI styleNeutralButton");
             }
 
+            // Kiểm tra styleLinkButton và styleInputField
+            JButton btnLink = new JButton("Đăng ký tài khoản");
+            UIThemeUtil.styleLinkButton(btnLink, UIThemeUtil.LINK_AMBER);
+            if (!Boolean.TRUE.equals(btnLink.getClientProperty("isLink"))) {
+                throw new RuntimeException("LỖI styleLinkButton clientProperty");
+            }
+
+            javax.swing.JTextField txtUserTest = new javax.swing.JTextField();
+            UIThemeUtil.styleInputField(txtUserTest, UIThemeUtil.IconType.USER);
+            if (txtUserTest.isOpaque()) {
+                throw new RuntimeException("LỖI styleInputField isOpaque");
+            }
+
+            // Kiểm tra thẻ thống kê tổng quan (StatCard) với StatCardUI
+            javax.swing.JLabel lblStatTest = new javax.swing.JLabel();
+            lblStatTest.setSize(120, 62);
+            UIThemeUtil.formatStatCard(lblStatTest, UIThemeUtil.StatCardType.SINH_VIEN, 30);
+            if (!(lblStatTest.getUI() instanceof UIThemeUtil.StatCardUI)) {
+                throw new RuntimeException("LỖI: formatStatCard không gán StatCardUI");
+            }
+            if (!lblStatTest.getText().contains("SINH VIÊN") || !lblStatTest.getText().contains("30")) {
+                throw new RuntimeException("LỖI formatStatCard SINH VIÊN");
+            }
+            // Kiểm tra thẻ LỚP HỌC PHẦN
+            javax.swing.JLabel lblStatLHPTest = new javax.swing.JLabel();
+            lblStatLHPTest.setSize(120, 62);
+            UIThemeUtil.formatStatCard(lblStatLHPTest, UIThemeUtil.StatCardType.LOP_HOC_PHAN, 14);
+            if (!lblStatLHPTest.getText().contains("LỚP HỌC PHẦN") || !lblStatLHPTest.getText().contains("14")) {
+                throw new RuntimeException("LỖI formatStatCard LỚP HỌC PHẦN");
+            }
+
+            // Kiểm tra nút Thao tác nhanh (Quick Action) với QuickActionIcon
+            JButton btnQuickTest = new JButton();
+            UIThemeUtil.styleQuickActionButton(btnQuickTest, new Color(224, 242, 254), new Color(2, 132, 199), UIThemeUtil.QuickActionIcon.ActionType.NHAP_DIEM, "Nhập điểm");
+            if (!(btnQuickTest.getIcon() instanceof UIThemeUtil.QuickActionIcon)) {
+                throw new RuntimeException("LỖI: styleQuickActionButton không gán QuickActionIcon");
+            }
+            if (!"Nhập điểm".equals(btnQuickTest.getText())) {
+                throw new RuntimeException("LỖI: styleQuickActionButton không đúng text");
+            }
+
             System.out.println("[OK] Toàn bộ Style Helpers hoạt động chính xác 100%!");
 
             // 6. Kiểm tra trực tiếp trên Form thực tế (FrmDangNhap và FrmDangKyTaiKhoan)

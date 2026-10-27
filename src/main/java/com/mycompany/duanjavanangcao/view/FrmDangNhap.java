@@ -2,11 +2,12 @@ package com.mycompany.duanjavanangcao.view;
 
 import com.mycompany.duanjavanangcao.model.TaiKhoan;
 import com.mycompany.duanjavanangcao.service.DangNhapService;
+import com.mycompany.duanjavanangcao.util.UIThemeUtil;
 import javax.swing.JOptionPane;
 
 /**
- * Form đăng nhập hệ thống Quản lý điểm sinh viên
- * Thiết kế chuẩn NetBeans Swing GUI Builder
+ * Form đăng nhập hệ thống Quản lý điểm sinh viên - UTT
+ * Thiết kế giao diện hiện đại chuẩn NetBeans Swing GUI Builder
  */
 public class FrmDangNhap extends javax.swing.JFrame {
 
@@ -17,7 +18,20 @@ public class FrmDangNhap extends javax.swing.JFrame {
      */
     public FrmDangNhap() {
         initComponents();
-        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
+        UIThemeUtil.applyLoginTheme(
+                this,
+                pnlBrand,
+                pnlLoginForm,
+                txtTenDangNhap,
+                txtMatKhau,
+                btnDangNhap,
+                btnThoat,
+                btnDangKy,
+                lblQuenMatKhau,
+                lblHoTro,
+                this::hienThiHuongDanQuenMatKhau,
+                this::hienThiHuongDanHoTro
+        );
         this.setLocationRelativeTo(null); // Hiển thị form ở chính giữa màn hình
         this.dangNhapService = new DangNhapService();
     }
@@ -35,7 +49,7 @@ public class FrmDangNhap extends javax.swing.JFrame {
         lblBrandUni = new javax.swing.JLabel();
         lblBrandTitle = new javax.swing.JLabel();
         lblBrandSub = new javax.swing.JLabel();
-        lblBrandDesc = new javax.swing.JLabel();
+        lblBrandFooter = new javax.swing.JLabel();
         pnlLoginForm = new javax.swing.JPanel();
         lblTieuDe = new javax.swing.JLabel();
         lblMoTa = new javax.swing.JLabel();
@@ -46,18 +60,22 @@ public class FrmDangNhap extends javax.swing.JFrame {
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
         btnDangKy = new javax.swing.JButton();
+        lblQuenMatKhau = new javax.swing.JLabel();
+        lblPhanCach = new javax.swing.JLabel();
+        lblHoTro = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("ĐĂNG NHẬP HỆ THỐNG QUẢN LÝ ĐIỂM - UTT");
         setResizable(false);
 
-        pnlBrand.setBackground(new java.awt.Color(23, 54, 93));
+        pnlBrand.setBackground(new java.awt.Color(15, 29, 56));
+        pnlBrand.setPreferredSize(new java.awt.Dimension(370, 500));
 
         lblBrandUni.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         lblBrandUni.setForeground(new java.awt.Color(147, 197, 253));
         lblBrandUni.setText("TRƯỜNG ĐẠI HỌC CÔNG NGHỆ GTVT");
 
-        lblBrandTitle.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblBrandTitle.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
         lblBrandTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblBrandTitle.setText("QUẢN LÝ ĐIỂM SINH VIÊN");
 
@@ -65,8 +83,8 @@ public class FrmDangNhap extends javax.swing.JFrame {
         lblBrandSub.setForeground(new java.awt.Color(219, 234, 254));
         lblBrandSub.setText("Hệ thống quản lý đào tạo");
 
-        lblBrandDesc.setForeground(new java.awt.Color(191, 219, 254));
-        lblBrandDesc.setText("<html>Giải pháp số hóa quản lý kết quả học tập, điểm học phần, xét học vụ và theo dõi tiến độ đào tạo chuẩn tín chỉ.</html>");
+        lblBrandFooter.setForeground(new java.awt.Color(148, 163, 184));
+        lblBrandFooter.setText("<html>Giải pháp số hóa quản lý kết quả học tập, điểm học phần, xét học vụ và theo dõi tiến độ đào tạo chuẩn tín chỉ.</html>");
 
         javax.swing.GroupLayout pnlBrandLayout = new javax.swing.GroupLayout(pnlBrand);
         pnlBrand.setLayout(pnlBrandLayout);
@@ -75,11 +93,11 @@ public class FrmDangNhap extends javax.swing.JFrame {
             .addGroup(pnlBrandLayout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(pnlBrandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblBrandDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblBrandUni)
                     .addComponent(lblBrandTitle)
-                    .addComponent(lblBrandSub))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(lblBrandSub)
+                    .addComponent(lblBrandFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         pnlBrandLayout.setVerticalGroup(
             pnlBrandLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,26 +108,28 @@ public class FrmDangNhap extends javax.swing.JFrame {
                 .addComponent(lblBrandTitle)
                 .addGap(8, 8, 8)
                 .addComponent(lblBrandSub)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblBrandDesc)
-                .addGap(175, 175, 175))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblBrandFooter, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         pnlLoginForm.setBackground(new java.awt.Color(255, 255, 255));
+        pnlLoginForm.setPreferredSize(new java.awt.Dimension(450, 500));
 
         lblTieuDe.setFont(new java.awt.Font("Segoe UI", 1, 22)); // NOI18N
-        lblTieuDe.setForeground(new java.awt.Color(30, 58, 138));
+        lblTieuDe.setForeground(new java.awt.Color(15, 23, 42));
         lblTieuDe.setText("ĐĂNG NHẬP HỆ THỐNG");
 
+        lblMoTa.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblMoTa.setForeground(new java.awt.Color(100, 116, 139));
         lblMoTa.setText("Đăng nhập để tiếp tục vào hệ thống");
 
         lblTenDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        lblTenDangNhap.setForeground(new java.awt.Color(31, 41, 55));
-        lblTenDangNhap.setText("Tên đăng nhập (*):");
+        lblTenDangNhap.setForeground(new java.awt.Color(15, 23, 42));
+        lblTenDangNhap.setText("Tên đăng nhập (*)");
 
         txtTenDangNhap.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtTenDangNhap.setForeground(new java.awt.Color(31, 41, 55));
+        txtTenDangNhap.setForeground(new java.awt.Color(15, 23, 42));
         txtTenDangNhap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTenDangNhapActionPerformed(evt);
@@ -117,11 +137,11 @@ public class FrmDangNhap extends javax.swing.JFrame {
         });
 
         lblMatKhau.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        lblMatKhau.setForeground(new java.awt.Color(31, 41, 55));
-        lblMatKhau.setText("Mật khẩu (*):");
+        lblMatKhau.setForeground(new java.awt.Color(15, 23, 42));
+        lblMatKhau.setText("Mật khẩu (*)");
 
         txtMatKhau.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtMatKhau.setForeground(new java.awt.Color(31, 41, 55));
+        txtMatKhau.setForeground(new java.awt.Color(15, 23, 42));
         txtMatKhau.setEchoChar('*');
         txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -129,7 +149,7 @@ public class FrmDangNhap extends javax.swing.JFrame {
             }
         });
 
-        btnDangNhap.setBackground(new java.awt.Color(37, 99, 235));
+        btnDangNhap.setBackground(new java.awt.Color(29, 104, 254));
         btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDangNhap.setForeground(new java.awt.Color(255, 255, 255));
         btnDangNhap.setText("ĐĂNG NHẬP");
@@ -143,7 +163,7 @@ public class FrmDangNhap extends javax.swing.JFrame {
 
         btnThoat.setBackground(new java.awt.Color(226, 232, 240));
         btnThoat.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnThoat.setForeground(new java.awt.Color(31, 41, 55));
+        btnThoat.setForeground(new java.awt.Color(51, 65, 85));
         btnThoat.setText("Thoát");
         btnThoat.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnThoat.setFocusPainted(false);
@@ -153,10 +173,11 @@ public class FrmDangNhap extends javax.swing.JFrame {
             }
         });
 
-        btnDangKy.setBackground(new java.awt.Color(242, 140, 40));
-        btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnDangKy.setForeground(new java.awt.Color(255, 255, 255));
+        btnDangKy.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnDangKy.setForeground(new java.awt.Color(217, 119, 6));
         btnDangKy.setText("Đăng ký tài khoản sinh viên");
+        btnDangKy.setBorderPainted(false);
+        btnDangKy.setContentAreaFilled(false);
         btnDangKy.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnDangKy.setFocusPainted(false);
         btnDangKy.addActionListener(new java.awt.event.ActionListener() {
@@ -165,12 +186,23 @@ public class FrmDangNhap extends javax.swing.JFrame {
             }
         });
 
+        lblQuenMatKhau.setForeground(new java.awt.Color(100, 116, 139));
+        lblQuenMatKhau.setText("Quên mật khẩu?");
+        lblQuenMatKhau.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        lblPhanCach.setForeground(new java.awt.Color(148, 163, 184));
+        lblPhanCach.setText("|");
+
+        lblHoTro.setForeground(new java.awt.Color(100, 116, 139));
+        lblHoTro.setText("Hỗ trợ");
+        lblHoTro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         javax.swing.GroupLayout pnlLoginFormLayout = new javax.swing.GroupLayout(pnlLoginForm);
         pnlLoginForm.setLayout(pnlLoginFormLayout);
         pnlLoginFormLayout.setHorizontalGroup(
             pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLoginFormLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(42, 42, 42)
                 .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblTieuDe)
                     .addComponent(lblMoTa)
@@ -179,34 +211,45 @@ public class FrmDangNhap extends javax.swing.JFrame {
                     .addComponent(lblMatKhau)
                     .addComponent(txtMatKhau)
                     .addGroup(pnlLoginFormLayout.createSequentialGroup()
-                        .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15)
-                        .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnDangKy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)
+                        .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlLoginFormLayout.createSequentialGroup()
+                        .addComponent(btnDangKy)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblQuenMatKhau)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblPhanCach)
+                        .addGap(6, 6, 6)
+                        .addComponent(lblHoTro)))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         pnlLoginFormLayout.setVerticalGroup(
             pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlLoginFormLayout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(45, 45, 45)
                 .addComponent(lblTieuDe)
                 .addGap(6, 6, 6)
                 .addComponent(lblMoTa)
-                .addGap(22, 22, 22)
+                .addGap(24, 24, 24)
                 .addComponent(lblTenDangNhap)
                 .addGap(6, 6, 6)
-                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
+                .addComponent(txtTenDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
                 .addComponent(lblMatKhau)
                 .addGap(6, 6, 6)
-                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
                 .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(btnDangKy, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                    .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addGroup(pnlLoginFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnDangKy)
+                    .addComponent(lblQuenMatKhau)
+                    .addComponent(lblPhanCach)
+                    .addComponent(lblHoTro))
+                .addGap(35, 35, 35))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,16 +257,20 @@ public class FrmDangNhap extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
                 .addComponent(pnlBrand, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(pnlLoginForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addComponent(pnlLoginForm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlLoginForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlBrand, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlLoginForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -298,6 +345,56 @@ public class FrmDangNhap extends javax.swing.JFrame {
     }
 
     /**
+     * Hiển thị hộp thoại hướng dẫn khi người dùng nhấn "Quên mật khẩu?"
+     */
+    private void hienThiHuongDanQuenMatKhau() {
+        String thongBao = "QUÊN MẬT KHẨU?\n\n"
+                + "Bạn không thể đăng nhập vì quên mật khẩu?\n\n"
+                + "Để bảo vệ thông tin cá nhân và kết quả học tập, hệ thống không hỗ trợ hiển thị lại mật khẩu hiện tại.\n\n"
+                + "Vui lòng liên hệ Quản trị viên hệ thống để xác minh danh tính và yêu cầu đặt lại mật khẩu.\n\n"
+                + "Sau khi xác minh thông tin tài khoản, Quản trị viên sẽ hỗ trợ bạn khôi phục quyền truy cập.";
+
+        JOptionPane.showOptionDialog(
+                this,
+                thongBao,
+                "Quên mật khẩu",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"Đóng"},
+                "Đóng"
+        );
+    }
+
+    /**
+     * Hiển thị hộp thoại hướng dẫn khi người dùng nhấn "Hỗ trợ"
+     */
+    private void hienThiHuongDanHoTro() {
+        String thongBao = "HƯỚNG DẪN VÀ HỖ TRỢ NGƯỜI DÙNG\n\n"
+                + "1. Không đăng nhập được\n"
+                + "   Kiểm tra tên đăng nhập, mật khẩu và trạng thái tài khoản. Nếu vẫn không thể đăng nhập, hãy liên hệ Quản trị viên hệ thống.\n\n"
+                + "2. Quên mật khẩu\n"
+                + "   Vui lòng liên hệ Quản trị viên để xác minh thông tin tài khoản và yêu cầu đặt lại mật khẩu.\n\n"
+                + "3. Không xem được điểm học tập\n"
+                + "   Kiểm tra học kỳ, học phần và tài khoản đang sử dụng. Nếu dữ liệu vẫn không hiển thị như mong đợi, hãy liên hệ bộ phận phụ trách để được kiểm tra.\n\n"
+                + "4. Gặp lỗi khi sử dụng phần mềm\n"
+                + "   Ghi lại nội dung thông báo lỗi và cung cấp thông tin này cho người phụ trách hỗ trợ.\n\n"
+                + "5. Các vấn đề khác\n"
+                + "   Liên hệ bộ phận quản trị hoặc hỗ trợ phụ trách phần mềm theo quy trình của đơn vị.";
+
+        JOptionPane.showOptionDialog(
+                this,
+                thongBao,
+                "Hướng dẫn và Hỗ trợ",
+                JOptionPane.DEFAULT_OPTION,
+                JOptionPane.INFORMATION_MESSAGE,
+                null,
+                new Object[]{"Đóng"},
+                "Đóng"
+        );
+    }
+
+    /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
@@ -314,12 +411,15 @@ public class FrmDangNhap extends javax.swing.JFrame {
     private javax.swing.JButton btnDangKy;
     private javax.swing.JButton btnDangNhap;
     private javax.swing.JButton btnThoat;
-    private javax.swing.JLabel lblBrandDesc;
+    private javax.swing.JLabel lblBrandFooter;
     private javax.swing.JLabel lblBrandSub;
     private javax.swing.JLabel lblBrandTitle;
     private javax.swing.JLabel lblBrandUni;
+    private javax.swing.JLabel lblHoTro;
     private javax.swing.JLabel lblMatKhau;
     private javax.swing.JLabel lblMoTa;
+    private javax.swing.JLabel lblPhanCach;
+    private javax.swing.JLabel lblQuenMatKhau;
     private javax.swing.JLabel lblTenDangNhap;
     private javax.swing.JLabel lblTieuDe;
     private javax.swing.JPanel pnlBrand;

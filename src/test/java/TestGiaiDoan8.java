@@ -6,7 +6,6 @@ import com.mycompany.duanjavanangcao.dao.SinhVienDAO;
 import com.mycompany.duanjavanangcao.dao.TaiKhoanDAO;
 import com.mycompany.duanjavanangcao.dao.ThongBaoDAO;
 import com.mycompany.duanjavanangcao.model.BangDiem;
-import com.mycompany.duanjavanangcao.model.KetQuaHocTap;
 import com.mycompany.duanjavanangcao.model.LichSuDiem;
 import com.mycompany.duanjavanangcao.model.PhucKhao;
 import com.mycompany.duanjavanangcao.model.SinhVien;

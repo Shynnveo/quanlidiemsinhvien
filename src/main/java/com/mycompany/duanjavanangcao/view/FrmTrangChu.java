@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
 package com.mycompany.duanjavanangcao.view;
 
 import com.mycompany.duanjavanangcao.dao.ThongBaoDAO;
@@ -5,62 +9,77 @@ import com.mycompany.duanjavanangcao.dao.ThongKeDAO;
 import com.mycompany.duanjavanangcao.model.TaiKhoan;
 import com.mycompany.duanjavanangcao.model.ThongBao;
 import com.mycompany.duanjavanangcao.util.SessionManager;
-
+import java.awt.Color;
+import java.awt.Font;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
- * Form Trang chủ hệ thống - Thiết kế chuẩn NetBeans Swing GUI Builder
- * Điều hướng chức năng và phân quyền theo vai trò (ADMIN, GIANGVIEN, SINHVIEN)
+ * Màn hình Trang chủ - Cổng quản lý đào tạo & điểm sinh viên
+ * Chuẩn phong cách thiết kế UTT Academic Portal
+ * 
+ * @author Admin
  */
 public class FrmTrangChu extends javax.swing.JFrame {
 
     private final ThongKeDAO thongKeDAO;
     private final ThongBaoDAO thongBaoDAO;
     private List<ThongBao> danhSachThongBao;
-
-    // Quản lý các cửa sổ con đang mở để tránh mở nhiều bản sao
     private final java.util.Map<String, javax.swing.JFrame> activeChildForms = new java.util.HashMap<>();
 
     /**
-     * Khởi tạo form FrmTrangChu
+     * Creates new form FrmTrangChu
      */
     public FrmTrangChu() {
         initComponents();
-        getContentPane().setBackground(new java.awt.Color(244, 247, 251));
 
-        // Tùy chỉnh trực quan cho các thẻ thống kê tổng quan (Stat Cards)
-        javax.swing.border.Border cardBorder = javax.swing.BorderFactory.createCompoundBorder(
-                javax.swing.BorderFactory.createLineBorder(new java.awt.Color(216, 224, 234), 1),
-                javax.swing.BorderFactory.createEmptyBorder(4, 6, 4, 6));
-        java.awt.Color cardBg = new java.awt.Color(248, 250, 252);
+        // 1. Áp dụng giao diện Trang chủ toàn diện theo chuẩn UTT Design System
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyTrangChuTheme(
+                this,
+                pnlHeader,
+                pnlMenuTree,
+                pnlThongKe,
+                pnlThongBao,
+                pnlThaoTacNhanh,
+                lblAvatar,
+                btnDangXuat,
+                btnQuickNhapDiem,
+                btnQuickTraCuu,
+                btnQuickGPA,
+                btnQuickBaoCao,
+                treeMenu,
+                tblThongBao,
+                btnXemThongBao,
+                btnLamMoiThongBao
+        );
 
-        for (javax.swing.JLabel lbl : new javax.swing.JLabel[]{lblStatSV, lblStatGV, lblStatLop, lblStatMon, lblStatLHP}) {
-            lbl.setOpaque(true);
-            lbl.setBackground(cardBg);
-            lbl.setBorder(cardBorder);
-            lbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        }
+        // 2. Định dạng các thẻ thống kê tổng quan với nền bo góc và icon vector sắc nét
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatStatCard(lblStatSV, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.SINH_VIEN, 0);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatStatCard(lblStatGV, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.GIANG_VIEN, 0);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatStatCard(lblStatLop, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.LOP_HOC, 0);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatStatCard(lblStatMon, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.MON_HOC, 0);
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatStatCard(lblStatLHP, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.LOP_HOC_PHAN, 0);
 
-        // Định dạng bảng thông báo chuẩn phong cách UTT
-        com.mycompany.duanjavanangcao.util.UIThemeUtil.formatTable(tblThongBao);
+        // 3. Chuẩn hóa độ rộng cột bảng thông báo
         if (tblThongBao.getColumnModel().getColumnCount() >= 4) {
             tblThongBao.getColumnModel().getColumn(0).setPreferredWidth(50);
             tblThongBao.getColumnModel().getColumn(0).setMaxWidth(60);
-            tblThongBao.getColumnModel().getColumn(1).setPreferredWidth(320);
-            tblThongBao.getColumnModel().getColumn(2).setPreferredWidth(120);
-            tblThongBao.getColumnModel().getColumn(3).setPreferredWidth(140);
+            tblThongBao.getColumnModel().getColumn(1).setPreferredWidth(220);
+            tblThongBao.getColumnModel().getColumn(2).setPreferredWidth(90);
+            tblThongBao.getColumnModel().getColumn(3).setPreferredWidth(120);
 
-            javax.swing.table.DefaultTableCellRenderer centerRenderer = new javax.swing.table.DefaultTableCellRenderer();
+            DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
             centerRenderer.setHorizontalAlignment(javax.swing.JLabel.CENTER);
             tblThongBao.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
             tblThongBao.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
             tblThongBao.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
         }
-        com.mycompany.duanjavanangcao.util.UIThemeUtil.applyThemeToContainer(this);
 
         this.setLocationRelativeTo(null);
         this.thongKeDAO = new ThongKeDAO();
@@ -99,51 +118,59 @@ public class FrmTrangChu extends javax.swing.JFrame {
     }
 
     /**
-     * Phân quyền hiển thị theo vai trò người dùng trên JTree
+     * Phân quyền hiển thị theo 3 nhóm chức năng phù hợp vai trò người dùng
      * @param vaiTro ADMIN, GIANGVIEN, SINHVIEN
      */
     private void phanQuyen(String vaiTro) {
-        javax.swing.tree.DefaultMutableTreeNode root = new javax.swing.tree.DefaultMutableTreeNode("MENU CHỨC NĂNG");
+        DefaultMutableTreeNode root = new DefaultMutableTreeNode("MENU CHỨC NĂNG");
 
-        // Nhóm 1: Quản lý danh mục (chỉ dành cho Quản trị viên ADMIN)
+        // Nhóm 1: QUẢN LÝ DANH MỤC (Chỉ dành cho ADMIN)
         if ("ADMIN".equalsIgnoreCase(vaiTro)) {
-            javax.swing.tree.DefaultMutableTreeNode nhom1 = new javax.swing.tree.DefaultMutableTreeNode("QUẢN LÝ DANH MỤC (ADMIN)");
-            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Sinh viên"));
-            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Giảng viên"));
-            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Lớp học"));
-            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Môn học"));
-            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Học kỳ"));
-            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Lớp học phần"));
-            nhom1.add(new javax.swing.tree.DefaultMutableTreeNode("Quản lý Tài khoản"));
+            DefaultMutableTreeNode nhom1 = new DefaultMutableTreeNode("QUẢN LÝ DANH MỤC (ADMIN)");
+            nhom1.add(new DefaultMutableTreeNode("Quản lý Sinh viên"));
+            nhom1.add(new DefaultMutableTreeNode("Quản lý Giảng viên"));
+            nhom1.add(new DefaultMutableTreeNode("Quản lý Lớp học"));
+            nhom1.add(new DefaultMutableTreeNode("Quản lý Môn học"));
+            nhom1.add(new DefaultMutableTreeNode("Quản lý Học kỳ"));
+            nhom1.add(new DefaultMutableTreeNode("Quản lý Lớp học phần"));
+            nhom1.add(new DefaultMutableTreeNode("Quản lý Tài khoản"));
             root.add(nhom1);
         }
 
-        // Nhóm 2: Nghiệp vụ học vụ & điểm
-        javax.swing.tree.DefaultMutableTreeNode nhom2 = new javax.swing.tree.DefaultMutableTreeNode("NGHIỆP VỤ HỌC VỤ & ĐIỂM");
+        // Nhóm 2: NGHIỆP VỤ ĐÀO TẠO & ĐIỂM
+        DefaultMutableTreeNode nhom2 = new DefaultMutableTreeNode("NGHIỆP VỤ ĐÀO TẠO & ĐIỂM");
         if ("ADMIN".equalsIgnoreCase(vaiTro)) {
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Nhập điểm học phần"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Đăng ký học phần"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Kết quả học tập & GPA"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Thống kê & Báo cáo"));
+            nhom2.add(new DefaultMutableTreeNode("Nhập điểm học phần"));
+            nhom2.add(new DefaultMutableTreeNode("Đăng ký học phần"));
+            nhom2.add(new DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
+            nhom2.add(new DefaultMutableTreeNode("Phúc khảo điểm"));
         } else if ("GIANGVIEN".equalsIgnoreCase(vaiTro)) {
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Nhập điểm học phần"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Thống kê & Báo cáo"));
+            nhom2.add(new DefaultMutableTreeNode("Nhập điểm học phần"));
+            nhom2.add(new DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
+            nhom2.add(new DefaultMutableTreeNode("Phúc khảo điểm"));
         } else if ("SINHVIEN".equalsIgnoreCase(vaiTro)) {
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Đăng ký học phần"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Kết quả học tập & GPA"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm"));
-            nhom2.add(new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập"));
+            nhom2.add(new DefaultMutableTreeNode("Đăng ký học phần"));
+            nhom2.add(new DefaultMutableTreeNode("Tra cứu điểm sinh viên"));
+            nhom2.add(new DefaultMutableTreeNode("Phúc khảo điểm"));
         }
         root.add(nhom2);
 
-        treeMenu.setModel(new javax.swing.tree.DefaultTreeModel(root));
+        // Nhóm 3: HỌC VỤ & BÁO CÁO
+        DefaultMutableTreeNode nhom3 = new DefaultMutableTreeNode("HỌC VỤ & BÁO CÁO");
+        if ("ADMIN".equalsIgnoreCase(vaiTro)) {
+            nhom3.add(new DefaultMutableTreeNode("Kết quả học tập & GPA"));
+            nhom3.add(new DefaultMutableTreeNode("Cảnh báo học tập"));
+            nhom3.add(new DefaultMutableTreeNode("Thống kê & Báo cáo"));
+        } else if ("GIANGVIEN".equalsIgnoreCase(vaiTro)) {
+            nhom3.add(new DefaultMutableTreeNode("Cảnh báo học tập"));
+            nhom3.add(new DefaultMutableTreeNode("Thống kê & Báo cáo"));
+        } else if ("SINHVIEN".equalsIgnoreCase(vaiTro)) {
+            nhom3.add(new DefaultMutableTreeNode("Kết quả học tập & GPA"));
+            nhom3.add(new DefaultMutableTreeNode("Cảnh báo học tập"));
+        }
+        root.add(nhom3);
+
+        treeMenu.setModel(new DefaultTreeModel(root));
 
         // Mở rộng toàn bộ các nhánh của cây chức năng
         for (int i = 0; i < treeMenu.getRowCount(); i++) {
@@ -152,15 +179,15 @@ public class FrmTrangChu extends javax.swing.JFrame {
     }
 
     /**
-     * Tải số liệu thống kê từ CSDL
+     * Tải số liệu thống kê từ CSDL và định dạng rõ ràng
      */
     public void taiThongKe() {
         Map<String, Integer> stats = thongKeDAO.getThongKeTongQuan();
-        lblStatSV.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>SINH VIÊN</div><div style='font-size:18px;font-weight:bold;color:#2563EB;margin-top:3px;'>" + stats.getOrDefault("SoSV", 0) + "</div></center></html>");
-        lblStatGV.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>GIẢNG VIÊN</div><div style='font-size:18px;font-weight:bold;color:#15803D;margin-top:3px;'>" + stats.getOrDefault("SoGV", 0) + "</div></center></html>");
-        lblStatLop.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>LỚP HỌC</div><div style='font-size:18px;font-weight:bold;color:#17365D;margin-top:3px;'>" + stats.getOrDefault("SoLop", 0) + "</div></center></html>");
-        lblStatMon.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>MÔN HỌC</div><div style='font-size:18px;font-weight:bold;color:#D97706;margin-top:3px;'>" + stats.getOrDefault("SoMon", 0) + "</div></center></html>");
-        lblStatLHP.setText("<html><center><div style='font-size:11px;font-weight:bold;color:#64748B;'>LỚP HỌC PHẦN</div><div style='font-size:18px;font-weight:bold;color:#F28C28;margin-top:3px;'>" + stats.getOrDefault("SoLHP", 0) + "</div></center></html>");
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.updateStatCard(lblStatSV, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.SINH_VIEN, stats.getOrDefault("SoSV", 0));
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.updateStatCard(lblStatGV, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.GIANG_VIEN, stats.getOrDefault("SoGV", 0));
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.updateStatCard(lblStatLop, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.LOP_HOC, stats.getOrDefault("SoLop", 0));
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.updateStatCard(lblStatMon, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.MON_HOC, stats.getOrDefault("SoMon", 0));
+        com.mycompany.duanjavanangcao.util.UIThemeUtil.updateStatCard(lblStatLHP, com.mycompany.duanjavanangcao.util.UIThemeUtil.StatCardType.LOP_HOC_PHAN, stats.getOrDefault("SoLHP", 0));
     }
 
     /**
@@ -188,17 +215,6 @@ public class FrmTrangChu extends javax.swing.JFrame {
     }
 
     /**
-     * Thông báo mở module sắp tới
-     */
-    private void thongBaoDieuHuong(String tenChucNang, String giaiDoanKeTiep) {
-        JOptionPane.showMessageDialog(this,
-                "Chức năng: [" + tenChucNang + "]\n"
-                + "Đã sẵn sàng điều hướng và sẽ được hoàn thiện trong " + giaiDoanKeTiep + "!",
-                "Điều hướng chức năng",
-                JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
      * regenerated by the Form Editor.
@@ -211,6 +227,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
         lblTieuDe = new javax.swing.JLabel();
         lblNguoiDung = new javax.swing.JLabel();
         btnDangXuat = new javax.swing.JButton();
+        lblAvatar = new javax.swing.JLabel();
         pnlMenuTree = new javax.swing.JPanel();
         scrollTree = new javax.swing.JScrollPane();
         treeMenu = new javax.swing.JTree();
@@ -225,6 +242,11 @@ public class FrmTrangChu extends javax.swing.JFrame {
         tblThongBao = new javax.swing.JTable();
         btnXemThongBao = new javax.swing.JButton();
         btnLamMoiThongBao = new javax.swing.JButton();
+        pnlThaoTacNhanh = new javax.swing.JPanel();
+        btnQuickNhapDiem = new javax.swing.JButton();
+        btnQuickTraCuu = new javax.swing.JButton();
+        btnQuickGPA = new javax.swing.JButton();
+        btnQuickBaoCao = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("TRANG CHỦ - HỆ THỐNG QUẢN LÝ ĐIỂM SINH VIÊN");
@@ -235,11 +257,11 @@ public class FrmTrangChu extends javax.swing.JFrame {
         lblTieuDe.setForeground(new java.awt.Color(255, 255, 255));
         lblTieuDe.setText("TRƯỜNG ĐẠI HỌC CÔNG NGHỆ GTVT - CỔNG QUẢN LÝ ĐÀO TẠO");
 
-        lblNguoiDung.setFont(new java.awt.Font("Segoe UI", 2, 13)); // NOI18N
+        lblNguoiDung.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         lblNguoiDung.setForeground(new java.awt.Color(219, 234, 254));
         lblNguoiDung.setText("Xin chào: ... | Vai trò: ...");
 
-        btnDangXuat.setBackground(new java.awt.Color(220, 38, 38));
+        btnDangXuat.setBackground(new java.awt.Color(239, 68, 68));
         btnDangXuat.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
         btnDangXuat.setForeground(new java.awt.Color(255, 255, 255));
         btnDangXuat.setText("Đăng xuất");
@@ -251,6 +273,12 @@ public class FrmTrangChu extends javax.swing.JFrame {
             }
         });
 
+        lblAvatar.setFont(new java.awt.Font("Segoe UI Symbol", 1, 22)); // NOI18N
+        lblAvatar.setForeground(new java.awt.Color(219, 234, 254));
+        lblAvatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblAvatar.setText("👤");
+        lblAvatar.setToolTipText("Tài khoản người dùng");
+
         javax.swing.GroupLayout pnlHeaderLayout = new javax.swing.GroupLayout(pnlHeader);
         pnlHeader.setLayout(pnlHeaderLayout);
         pnlHeaderLayout.setHorizontalGroup(
@@ -261,7 +289,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
                     .addComponent(lblTieuDe)
                     .addComponent(lblNguoiDung))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20))
         );
         pnlHeaderLayout.setVerticalGroup(
@@ -270,7 +300,8 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTieuDe)
-                    .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNguoiDung)
                 .addContainerGap(12, Short.MAX_VALUE))
@@ -279,7 +310,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
         pnlMenuTree.setBackground(new java.awt.Color(255, 255, 255));
         pnlMenuTree.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "ĐIỀU HƯỚNG CHỨC NĂNG", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(23, 54, 93))); // NOI18N
 
-        scrollTree.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(216, 224, 234)));
+        scrollTree.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         treeMenu.setFont(new java.awt.Font("Segoe UI", 0, 13)); // NOI18N
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("MENU CHỨC NĂNG");
@@ -299,16 +330,18 @@ public class FrmTrangChu extends javax.swing.JFrame {
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Quản lý Tài khoản");
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("NGHIỆP VỤ HỌC VỤ & ĐIỂM");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("NGHIỆP VỤ ĐÀO TẠO & ĐIỂM");
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Nhập điểm học phần");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Đăng ký học phần");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Tra cứu điểm sinh viên");
         treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Kết quả học tập & GPA");
-        treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Phúc khảo điểm");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("HỌC VỤ & BÁO CÁO");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Kết quả học tập & GPA");
         treeNode2.add(treeNode3);
         treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Cảnh báo học tập");
         treeNode2.add(treeNode3);
@@ -317,7 +350,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
         treeNode1.add(treeNode2);
         treeMenu.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         treeMenu.setRootVisible(false);
-        treeMenu.setRowHeight(32);
+        treeMenu.setRowHeight(36);
         treeMenu.setShowsRootHandles(true);
         treeMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -337,14 +370,14 @@ public class FrmTrangChu extends javax.swing.JFrame {
             pnlMenuTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuTreeLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(scrollTree, javax.swing.GroupLayout.DEFAULT_SIZE, 248, Short.MAX_VALUE)
+                .addComponent(scrollTree, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
                 .addGap(10, 10, 10))
         );
         pnlMenuTreeLayout.setVerticalGroup(
             pnlMenuTreeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlMenuTreeLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
-                .addComponent(scrollTree)
+                .addComponent(scrollTree, javax.swing.GroupLayout.DEFAULT_SIZE, 567, Short.MAX_VALUE)
                 .addGap(12, 12, 12))
         );
 
@@ -356,19 +389,19 @@ public class FrmTrangChu extends javax.swing.JFrame {
         lblStatSV.setText("Sinh viên: 0");
 
         lblStatGV.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        lblStatGV.setForeground(new java.awt.Color(37, 99, 235));
+        lblStatGV.setForeground(new java.awt.Color(22, 163, 74));
         lblStatGV.setText("Giảng viên: 0");
 
         lblStatLop.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        lblStatLop.setForeground(new java.awt.Color(37, 99, 235));
+        lblStatLop.setForeground(new java.awt.Color(23, 54, 93));
         lblStatLop.setText("Lớp học: 0");
 
         lblStatMon.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        lblStatMon.setForeground(new java.awt.Color(37, 99, 235));
+        lblStatMon.setForeground(new java.awt.Color(217, 119, 6));
         lblStatMon.setText("Môn học: 0");
 
         lblStatLHP.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
-        lblStatLHP.setForeground(new java.awt.Color(37, 99, 235));
+        lblStatLHP.setForeground(new java.awt.Color(242, 140, 40));
         lblStatLHP.setText("Lớp HP: 0");
 
         javax.swing.GroupLayout pnlThongKeLayout = new javax.swing.GroupLayout(pnlThongKe);
@@ -377,27 +410,27 @@ public class FrmTrangChu extends javax.swing.JFrame {
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlThongKeLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(lblStatSV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblStatSV, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(lblStatGV, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblStatGV, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(lblStatLop, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblStatLop, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(lblStatMon, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblStatMon, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
                 .addGap(12, 12, 12)
-                .addComponent(lblStatLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(lblStatLHP, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                .addGap(15, 15, 15))
         );
         pnlThongKeLayout.setVerticalGroup(
             pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlThongKeLayout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(18, 18, 18)
                 .addGroup(pnlThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblStatSV, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatGV, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatLop, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatMon, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblStatLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblStatSV, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatGV, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatLop, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatMon, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblStatLHP, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
@@ -421,7 +454,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblThongBao.setRowHeight(26);
+        tblThongBao.setRowHeight(30);
         tblThongBao.setSelectionBackground(new java.awt.Color(37, 99, 235));
         tblThongBao.setSelectionForeground(new java.awt.Color(255, 255, 255));
         jScrollPane1.setViewportView(tblThongBao);
@@ -457,9 +490,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
             .addGroup(pnlThongBaoLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addGroup(pnlThongBaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(pnlThongBaoLayout.createSequentialGroup()
-                        .addComponent(btnXemThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnXemThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnLamMoiThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -469,12 +502,90 @@ public class FrmTrangChu extends javax.swing.JFrame {
             pnlThongBaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlThongBaoLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlThongBaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnXemThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnLamMoiThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnXemThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnLamMoiThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
+        );
+
+        pnlThaoTacNhanh.setBackground(new java.awt.Color(255, 255, 255));
+        pnlThaoTacNhanh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "THAO TÁC NHANH", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 13), new java.awt.Color(23, 54, 93))); // NOI18N
+
+        btnQuickNhapDiem.setBackground(new java.awt.Color(224, 242, 254));
+        btnQuickNhapDiem.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnQuickNhapDiem.setForeground(new java.awt.Color(2, 132, 199));
+        btnQuickNhapDiem.setText("  Nhập điểm");
+        btnQuickNhapDiem.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQuickNhapDiem.setFocusPainted(false);
+        btnQuickNhapDiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuickNhapDiemActionPerformed(evt);
+            }
+        });
+
+        btnQuickTraCuu.setBackground(new java.awt.Color(220, 252, 231));
+        btnQuickTraCuu.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnQuickTraCuu.setForeground(new java.awt.Color(22, 163, 74));
+        btnQuickTraCuu.setText("Tra cứu điểm");
+        btnQuickTraCuu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQuickTraCuu.setFocusPainted(false);
+        btnQuickTraCuu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuickTraCuuActionPerformed(evt);
+            }
+        });
+
+        btnQuickGPA.setBackground(new java.awt.Color(224, 231, 255));
+        btnQuickGPA.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnQuickGPA.setForeground(new java.awt.Color(79, 70, 229));
+        btnQuickGPA.setText("Kết quả GPA");
+        btnQuickGPA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQuickGPA.setFocusPainted(false);
+        btnQuickGPA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuickGPAActionPerformed(evt);
+            }
+        });
+
+        btnQuickBaoCao.setBackground(new java.awt.Color(255, 237, 213));
+        btnQuickBaoCao.setFont(new java.awt.Font("Segoe UI", 1, 13)); // NOI18N
+        btnQuickBaoCao.setForeground(new java.awt.Color(234, 88, 12));
+        btnQuickBaoCao.setText("Thống kê & Báo cáo");
+        btnQuickBaoCao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnQuickBaoCao.setFocusPainted(false);
+        btnQuickBaoCao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuickBaoCaoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlThaoTacNhanhLayout = new javax.swing.GroupLayout(pnlThaoTacNhanh);
+        pnlThaoTacNhanh.setLayout(pnlThaoTacNhanhLayout);
+        pnlThaoTacNhanhLayout.setHorizontalGroup(
+            pnlThaoTacNhanhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlThaoTacNhanhLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(pnlThaoTacNhanhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnQuickNhapDiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuickTraCuu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuickGPA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnQuickBaoCao, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
+        );
+        pnlThaoTacNhanhLayout.setVerticalGroup(
+            pnlThaoTacNhanhLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlThaoTacNhanhLayout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addComponent(btnQuickNhapDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnQuickTraCuu, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnQuickGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnQuickBaoCao, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -486,11 +597,14 @@ public class FrmTrangChu extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(pnlMenuTree, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(pnlMenuTree, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pnlThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(pnlThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(pnlThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(18, 18, 18)
+                                .addComponent(pnlThaoTacNhanh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
@@ -503,7 +617,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlThongBao, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(pnlThongBao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnlThaoTacNhanh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(pnlMenuTree, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(20, 20, 20))
         );
@@ -534,6 +650,22 @@ public class FrmTrangChu extends javax.swing.JFrame {
             xuLyKichHoatNode();
         }
     }//GEN-LAST:event_treeMenuKeyPressed
+
+    private void btnQuickNhapDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuickNhapDiemActionPerformed
+        moChucNangTheoTen("Nhập điểm học phần");
+    }//GEN-LAST:event_btnQuickNhapDiemActionPerformed
+
+    private void btnQuickTraCuuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuickTraCuuActionPerformed
+        moChucNangTheoTen("Tra cứu điểm sinh viên");
+    }//GEN-LAST:event_btnQuickTraCuuActionPerformed
+
+    private void btnQuickGPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuickGPAActionPerformed
+        moChucNangTheoTen("Kết quả học tập & GPA");
+    }//GEN-LAST:event_btnQuickGPAActionPerformed
+
+    private void btnQuickBaoCaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuickBaoCaoActionPerformed
+        moChucNangTheoTen("Thống kê & Báo cáo");
+    }//GEN-LAST:event_btnQuickBaoCaoActionPerformed
 
     private void xuLyKichHoatNode() {
         javax.swing.tree.TreePath path = treeMenu.getSelectionPath();
@@ -710,8 +842,13 @@ public class FrmTrangChu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDangXuat;
     private javax.swing.JButton btnLamMoiThongBao;
+    private javax.swing.JButton btnQuickBaoCao;
+    private javax.swing.JButton btnQuickGPA;
+    private javax.swing.JButton btnQuickNhapDiem;
+    private javax.swing.JButton btnQuickTraCuu;
     private javax.swing.JButton btnXemThongBao;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblAvatar;
     private javax.swing.JLabel lblNguoiDung;
     private javax.swing.JLabel lblStatGV;
     private javax.swing.JLabel lblStatLHP;
@@ -721,6 +858,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
     private javax.swing.JLabel lblTieuDe;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlMenuTree;
+    private javax.swing.JPanel pnlThaoTacNhanh;
     private javax.swing.JPanel pnlThongBao;
     private javax.swing.JPanel pnlThongKe;
     private javax.swing.JScrollPane scrollTree;
@@ -728,4 +866,3 @@ public class FrmTrangChu extends javax.swing.JFrame {
     private javax.swing.JTree treeMenu;
     // End of variables declaration//GEN-END:variables
 }
-

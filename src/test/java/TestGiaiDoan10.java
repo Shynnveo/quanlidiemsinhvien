@@ -2,7 +2,6 @@ import com.mycompany.duanjavanangcao.dao.HocKyDAO;
 import com.mycompany.duanjavanangcao.dao.LopHocPhanDAO;
 import com.mycompany.duanjavanangcao.dao.TaiKhoanDAO;
 import com.mycompany.duanjavanangcao.dao.ThongKeDAO;
-import com.mycompany.duanjavanangcao.model.HocKy;
 import com.mycompany.duanjavanangcao.model.LopHocPhan;
 import com.mycompany.duanjavanangcao.model.TaiKhoan;
 import com.mycompany.duanjavanangcao.util.PasswordUtil;
