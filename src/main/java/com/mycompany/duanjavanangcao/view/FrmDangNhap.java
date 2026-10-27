@@ -263,6 +263,11 @@ public class FrmDangNhap extends javax.swing.JFrame {
         String tenDangNhap = txtTenDangNhap.getText();
         String matKhau = new String(txtMatKhau.getPassword());
 
+        // Hiển thị trạng thái bận và tạm vô hiệu hóa các nút để chống nhấn lặp
+        btnDangNhap.setEnabled(false);
+        btnDangKy.setEnabled(false);
+        setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+
         try {
             TaiKhoan tk = dangNhapService.dangNhap(tenDangNhap, matKhau);
 
@@ -284,6 +289,11 @@ public class FrmDangNhap extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
             txtMatKhau.setText("");
             txtMatKhau.requestFocus();
+        } finally {
+            // Luôn khôi phục trạng thái nút và con trỏ chuột kể cả khi đăng nhập thất bại
+            btnDangNhap.setEnabled(true);
+            btnDangKy.setEnabled(true);
+            setCursor(java.awt.Cursor.getDefaultCursor());
         }
     }
 

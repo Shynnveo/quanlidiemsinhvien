@@ -602,19 +602,28 @@ public class FrmNhapDiem extends javax.swing.JFrame {
         int nguoiCapNhatId = (currentUser != null) ? currentUser.getTaiKhoanId() : 1;
         String lyDo = txtLyDo.getText().trim();
 
-        boolean success = bangDiemDAO.updateDiem(selectedBangDiem, nguoiCapNhatId, lyDo);
-        if (success) {
-            JOptionPane.showMessageDialog(this,
-                    "Cập nhật điểm thành công cho sinh viên: " + selectedBangDiem.getHoTenSinhVien() + "!",
-                    "Thông báo", JOptionPane.INFORMATION_MESSAGE);
-            int keepIndex = tblBangDiem.getSelectedRow();
-            taiDanhSachBangDiem();
-            if (keepIndex >= 0 && keepIndex < tblBangDiem.getRowCount()) {
-                tblBangDiem.setRowSelectionInterval(keepIndex, keepIndex);
-                selectedBangDiem = danhSachBangDiem.get(keepIndex);
+        // Chống nhấn lặp và báo trạng thái bận trong khi ghi dữ liệu điểm
+        btnLuuDiem.setEnabled(false);
+        setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
+
+        try {
+            boolean success = bangDiemDAO.updateDiem(selectedBangDiem, nguoiCapNhatId, lyDo);
+            if (success) {
+                JOptionPane.showMessageDialog(this,
+                        "Cập nhật điểm thành công cho sinh viên: " + selectedBangDiem.getHoTenSinhVien() + "!",
+                        "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                int keepIndex = tblBangDiem.getSelectedRow();
+                taiDanhSachBangDiem();
+                if (keepIndex >= 0 && keepIndex < tblBangDiem.getRowCount()) {
+                    tblBangDiem.setRowSelectionInterval(keepIndex, keepIndex);
+                    selectedBangDiem = danhSachBangDiem.get(keepIndex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Cập nhật điểm thất bại, vui lòng kiểm tra kết nối!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "Cập nhật điểm thất bại, vui lòng kiểm tra kết nối!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        } finally {
+            btnLuuDiem.setEnabled(true);
+            setCursor(java.awt.Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_btnLuuDiemActionPerformed
 

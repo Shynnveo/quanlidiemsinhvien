@@ -542,6 +542,8 @@ public class FrmDangKyHocPhan extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
 
         if (confirm == JOptionPane.YES_OPTION) {
+            btnDangKy.setEnabled(false);
+            setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
             try {
                 boolean success = dangKyDAO.register(currentSinhVien.getSinhVienId(), lhp.getLopHocPhanId());
                 if (success) {
@@ -559,6 +561,9 @@ public class FrmDangKyHocPhan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         "Lỗi cơ sở dữ liệu: " + e.getMessage(),
                         "Lỗi", JOptionPane.ERROR_MESSAGE);
+            } finally {
+                btnDangKy.setEnabled(true);
+                setCursor(java.awt.Cursor.getDefaultCursor());
             }
         }
     }//GEN-LAST:event_btnDangKyActionPerformed
@@ -588,6 +593,8 @@ public class FrmDangKyHocPhan extends javax.swing.JFrame {
                 JOptionPane.YES_NO_OPTION);
 
         if (confirm == JOptionPane.YES_OPTION) {
+            btnHuyDangKy.setEnabled(false);
+            setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
             try {
                 boolean success = dangKyDAO.cancelRegistration(dk.getDangKyId());
                 if (success) {
@@ -605,6 +612,9 @@ public class FrmDangKyHocPhan extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this,
                         e.getMessage(),
                         "Không thể hủy", JOptionPane.WARNING_MESSAGE);
+            } finally {
+                btnHuyDangKy.setEnabled(true);
+                setCursor(java.awt.Cursor.getDefaultCursor());
             }
         }
     }//GEN-LAST:event_btnHuyDangKyActionPerformed
