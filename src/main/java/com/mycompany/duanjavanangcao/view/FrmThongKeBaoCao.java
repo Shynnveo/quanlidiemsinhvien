@@ -136,33 +136,77 @@ public class FrmThongKeBaoCao extends javax.swing.JFrame {
         }
 
         int loaiBaoCao = cboLoaiBaoCao.getSelectedIndex();
-        switch (loaiBaoCao) {
-            case 0:
-                thongKeXepLoaiGPA();
-                break;
-            case 1:
-                thongKePhoDiemHocPhan();
-                break;
-            case 2:
-                thongKeCanhCaoHocVu();
-                break;
-            default:
-                break;
-        }
-    }
+        btnXemThongKe.setEnabled(false);
+        setCursor(java.awt.Cursor.getPredefinedCursor(java.awt.Cursor.WAIT_CURSOR));
 
-    /**
-     * Báo cáo 1: Thống kê xếp loại học lực theo thang điểm GPA hệ 4
-     */
-    private void thongKeXepLoaiGPA() {
+        // Chuẩn bị tham số trên EDT trước khi chuyển xuống luồng nền
         HocKy hk = (HocKy) cboHocKy.getSelectedItem();
         Lop lop = (Lop) cboLop.getSelectedItem();
+        LopHocPhan lhp = (LopHocPhan) cboLopHocPhan.getSelectedItem();
 
         int hocKyId = (hk != null) ? hk.getHocKyId() : 0;
         int lopId = (lop != null) ? lop.getLopId() : 0;
+        int lhpId = (lhp != null) ? lhp.getLopHocPhanId() : 0;
 
-        Map<String, Integer> stats = thongKeDAO.thongKeXepLoaiHocLuc(hocKyId, lopId);
+        // Sử dụng SwingWorker để thực thi truy vấn SQL dưới nền, không chặn giao diện (EDT)
+        javax.swing.SwingWorker<Object, Void> worker = new javax.swing.SwingWorker<Object, Void>() {
+            @Override
+            protected Object doInBackground() throws Exception {
+                // Tác vụ nền: Gọi truy vấn DAO lấy dữ liệu từ SQL Server
+                switch (loaiBaoCao) {
+                    case 0:
+                        return thongKeDAO.thongKeXepLoaiHocLuc(hocKyId, lopId);
+                    case 1:
+                        if (lhpId <= 0) return null;
+                        return thongKeDAO.thongKeDiemHocPhan(lhpId);
+                    case 2:
+                        return thongKeDAO.thongKeCanhCaoHocTap(hocKyId);
+                    default:
+                        return null;
+                }
+            }
 
+            @Override
+            protected void done() {
+                try {
+                    Object ketQua = get();
+                    switch (loaiBaoCao) {
+                        case 0:
+                            @SuppressWarnings("unchecked")
+                            Map<String, Integer> stats0 = (Map<String, Integer>) ketQua;
+                            hienThiXepLoaiGPA(stats0);
+                            break;
+                        case 1:
+                            @SuppressWarnings("unchecked")
+                            Map<String, Object> stats1 = (Map<String, Object>) ketQua;
+                            hienThiPhoDiemHocPhan(stats1);
+                            break;
+                        case 2:
+                            @SuppressWarnings("unchecked")
+                            Map<String, Integer> stats2 = (Map<String, Integer>) ketQua;
+                            hienThiCanhCaoHocVu(stats2);
+                            break;
+                        default:
+                            break;
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(FrmThongKeBaoCao.this,
+                            "Lỗi khi lấy dữ liệu thống kê: " + ex.getMessage(),
+                            "Lỗi truy vấn", JOptionPane.ERROR_MESSAGE);
+                } finally {
+                    btnXemThongKe.setEnabled(true);
+                    setCursor(java.awt.Cursor.getDefaultCursor());
+                }
+            }
+        };
+        worker.execute();
+    }
+
+    /**
+     * Báo cáo 1: Cập nhật giao diện thống kê xếp loại học lực theo thang điểm GPA hệ 4
+     */
+    private void hienThiXepLoaiGPA(Map<String, Integer> stats) {
+        if (stats == null) stats = new java.util.HashMap<>();
         int xs = stats.getOrDefault("Xuất sắc (>= 3.60)", 0);
         int gioi = stats.getOrDefault("Giỏi (3.20 - 3.59)", 0);
         int kha = stats.getOrDefault("Khá (2.50 - 3.19)", 0);
@@ -199,12 +243,9 @@ public class FrmThongKeBaoCao extends javax.swing.JFrame {
     }
 
     /**
-     * Báo cáo 2: Thống kê phổ điểm học phần (A, B+, B, C+, C, D+, D, F)
+     * Báo cáo 2: Cập nhật giao diện thống kê phổ điểm học phần (A, B+, B, C+, C, D+, D, F)
      */
-    private void thongKePhoDiemHocPhan() {
-        LopHocPhan lhp = (LopHocPhan) cboLopHocPhan.getSelectedItem();
-        int lhpId = (lhp != null) ? lhp.getLopHocPhanId() : 0;
-
+    private void hienThiPhoDiemHocPhan(Map<String, Object> stats) {
         String[] columns = {"STT", "Điểm chữ", "Thang điểm 10 quy đổi", "Số lượng SV", "Tỷ lệ (%)"};
         DefaultTableModel model = new DefaultTableModel(columns, 0) {
             @Override
@@ -213,7 +254,7 @@ public class FrmThongKeBaoCao extends javax.swing.JFrame {
             }
         };
 
-        if (lhpId <= 0) {
+        if (stats == null) {
             lblChiSo1.setText("Tổng sinh viên: 0");
             lblChiSo2.setText("Tỷ lệ đạt: 0.0%");
             lblChiSo3.setText("Điểm TB: 0.00");
@@ -222,7 +263,6 @@ public class FrmThongKeBaoCao extends javax.swing.JFrame {
             return;
         }
 
-        Map<String, Object> stats = thongKeDAO.thongKeDiemHocPhan(lhpId);
         int tongSV = (int) stats.getOrDefault("TongSV", 0);
         double tyLeDat = (double) stats.getOrDefault("TyLeDat", 0.0);
         double diemTB = (double) stats.getOrDefault("DiemTB", 0.0);
@@ -253,13 +293,10 @@ public class FrmThongKeBaoCao extends javax.swing.JFrame {
     }
 
     /**
-     * Báo cáo 3: Thống kê sinh viên bị cảnh báo học tập theo học kỳ
+     * Báo cáo 3: Cập nhật giao diện thống kê sinh viên bị cảnh báo học tập theo học kỳ
      */
-    private void thongKeCanhCaoHocVu() {
-        HocKy hk = (HocKy) cboHocKy.getSelectedItem();
-        int hocKyId = (hk != null) ? hk.getHocKyId() : 0;
-
-        Map<String, Integer> stats = thongKeDAO.thongKeCanhCaoHocTap(hocKyId);
+    private void hienThiCanhCaoHocVu(Map<String, Integer> stats) {
+        if (stats == null) stats = new java.util.HashMap<>();
         int tong = stats.getOrDefault("Tổng số cảnh báo", 0);
         int m1 = stats.getOrDefault("Cảnh báo mức 1", 0);
         int m2 = stats.getOrDefault("Cảnh báo mức 2", 0);
