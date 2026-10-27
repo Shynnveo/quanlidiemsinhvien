@@ -22,6 +22,9 @@ public class FrmTrangChu extends javax.swing.JFrame {
     private final ThongBaoDAO thongBaoDAO;
     private List<ThongBao> danhSachThongBao;
 
+    // Quản lý các cửa sổ con đang mở để tránh mở nhiều bản sao
+    private final java.util.Map<String, javax.swing.JFrame> activeChildForms = new java.util.HashMap<>();
+
     /**
      * Khởi tạo form FrmTrangChu
      */
@@ -551,31 +554,57 @@ public class FrmTrangChu extends javax.swing.JFrame {
         moChucNangTheoTen(tenChucNang);
     }
 
+    /**
+     * Mở một form con duy nhất, nếu form đang mở thì đưa lên phía trước (toFront).
+     * Khi form đóng thì tự động dọn dẹp khỏi danh sách quản lý.
+     */
+    private void moFormCon(String maChucNang, java.util.function.Supplier<javax.swing.JFrame> formSupplier) {
+        javax.swing.JFrame existing = activeChildForms.get(maChucNang);
+        if (existing != null && existing.isDisplayable()) {
+            if (existing.getState() == java.awt.Frame.ICONIFIED) {
+                existing.setState(java.awt.Frame.NORMAL);
+            }
+            existing.toFront();
+            existing.requestFocus();
+            return;
+        }
+
+        javax.swing.JFrame formMoi = formSupplier.get();
+        formMoi.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosed(java.awt.event.WindowEvent e) {
+                activeChildForms.remove(maChucNang);
+            }
+        });
+        activeChildForms.put(maChucNang, formMoi);
+        formMoi.setVisible(true);
+    }
+
     private void moChucNangTheoTen(String tenChucNang) {
         TaiKhoan currentUser = SessionManager.getCurrentUser();
         String vaiTro = (currentUser != null) ? currentUser.getVaiTro() : "";
 
         switch (tenChucNang) {
             case "Quản lý Sinh viên":
-                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLSinhVien().setVisible(true);
+                if (kiemTraQuyenAdmin(vaiTro)) moFormCon(tenChucNang, FrmQLSinhVien::new);
                 break;
             case "Quản lý Giảng viên":
-                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLGiangVien().setVisible(true);
+                if (kiemTraQuyenAdmin(vaiTro)) moFormCon(tenChucNang, FrmQLGiangVien::new);
                 break;
             case "Quản lý Lớp học":
-                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLLop().setVisible(true);
+                if (kiemTraQuyenAdmin(vaiTro)) moFormCon(tenChucNang, FrmQLLop::new);
                 break;
             case "Quản lý Môn học":
-                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLMonHoc().setVisible(true);
+                if (kiemTraQuyenAdmin(vaiTro)) moFormCon(tenChucNang, FrmQLMonHoc::new);
                 break;
             case "Quản lý Học kỳ":
-                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLHocKy().setVisible(true);
+                if (kiemTraQuyenAdmin(vaiTro)) moFormCon(tenChucNang, FrmQLHocKy::new);
                 break;
             case "Quản lý Lớp học phần":
-                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLLopHocPhan().setVisible(true);
+                if (kiemTraQuyenAdmin(vaiTro)) moFormCon(tenChucNang, FrmQLLopHocPhan::new);
                 break;
             case "Quản lý Tài khoản":
-                if (kiemTraQuyenAdmin(vaiTro)) new FrmQLTaiKhoan().setVisible(true);
+                if (kiemTraQuyenAdmin(vaiTro)) moFormCon(tenChucNang, FrmQLTaiKhoan::new);
                 break;
             case "Nhập điểm học phần":
                 if ("SINHVIEN".equalsIgnoreCase(vaiTro)) {
@@ -583,7 +612,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
                             "Sinh viên không có quyền truy cập Nhập điểm!",
                             "Từ chối", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    new FrmNhapDiem().setVisible(true);
+                    moFormCon(tenChucNang, FrmNhapDiem::new);
                 }
                 break;
             case "Đăng ký học phần":
@@ -592,11 +621,11 @@ public class FrmTrangChu extends javax.swing.JFrame {
                             "Giảng viên không sử dụng chức năng Đăng ký học phần!",
                             "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    new FrmDangKyHocPhan().setVisible(true);
+                    moFormCon(tenChucNang, FrmDangKyHocPhan::new);
                 }
                 break;
             case "Tra cứu điểm sinh viên":
-                new FrmTraCuuDiem().setVisible(true);
+                moFormCon(tenChucNang, FrmTraCuuDiem::new);
                 break;
             case "Kết quả học tập & GPA":
                 if ("GIANGVIEN".equalsIgnoreCase(vaiTro)) {
@@ -604,14 +633,14 @@ public class FrmTrangChu extends javax.swing.JFrame {
                             "Chức năng này dành cho Sinh viên và Quản trị viên!",
                             "Thông báo", JOptionPane.INFORMATION_MESSAGE);
                 } else {
-                    new FrmKetQuaGPA().setVisible(true);
+                    moFormCon(tenChucNang, FrmKetQuaGPA::new);
                 }
                 break;
             case "Phúc khảo điểm":
-                new FrmPhucKhao().setVisible(true);
+                moFormCon(tenChucNang, FrmPhucKhao::new);
                 break;
             case "Cảnh báo học tập":
-                new FrmCanhCaoHocTap().setVisible(true);
+                moFormCon(tenChucNang, FrmCanhCaoHocTap::new);
                 break;
             case "Thống kê & Báo cáo":
                 if ("SINHVIEN".equalsIgnoreCase(vaiTro)) {
@@ -619,7 +648,7 @@ public class FrmTrangChu extends javax.swing.JFrame {
                             "Sinh viên không có quyền truy cập Thống kê & Báo cáo!",
                             "Từ chối", JOptionPane.WARNING_MESSAGE);
                 } else {
-                    new FrmThongKeBaoCao().setVisible(true);
+                    moFormCon(tenChucNang, FrmThongKeBaoCao::new);
                 }
                 break;
             default:
