@@ -1,56 +1,56 @@
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\BangDiem.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmPhucKhao.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\HocKyDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\MonHocDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\LopDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\TieuChiCanhCao.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\LopHocPhan.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\UIThemeUtil.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\ThongBaoDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmDangKyHocPhan.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\Duanjavanangcao.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLGiangVien.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\SinhVienDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\GiangVien.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\KetQuaHocTapDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLMonHoc.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\DangKyHocPhanDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\DatabaseConnection.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\PasswordUtil.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\MonHoc.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLTaiKhoan.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\service\DangKyService.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\TieuChiCanhCaoDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\KetQuaHocTap.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\LichSuDiemDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\SinhVien.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLSinhVien.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmKetQuaGPA.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmDangKyTaiKhoan.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmTrangChu.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\Lop.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLLopHocPhan.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\HocKy.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\CanhCaoHocTapDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\DangKyHocPhan.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\TaiKhoanDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLLop.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\TaiKhoan.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLHocKy.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmTraCuuDiem.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\DiemUtil.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\BangDiemDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\LichSuDiem.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\PhucKhao.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmCanhCaoHocTap.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\GiangVienDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\SessionManager.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmDangNhap.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\PhucKhaoDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\ThongKeDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\service\DangNhapService.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\LopHocPhanDAO.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\ThongBao.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmNhapDiem.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmThongKeBaoCao.java
-D:\New folder\Java.Hang\duanjavanangcao\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\CanhCaoHocTap.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\BangDiemDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\CanhCaoHocTapDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\DangKyHocPhanDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\GiangVienDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\HocKyDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\KetQuaHocTapDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\LichSuDiemDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\LopDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\LopHocPhanDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\MonHocDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\PhucKhaoDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\SinhVienDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\TaiKhoanDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\ThongBaoDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\ThongKeDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\dao\TieuChiCanhCaoDAO.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\Duanjavanangcao.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\BangDiem.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\CanhCaoHocTap.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\DangKyHocPhan.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\GiangVien.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\HocKy.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\KetQuaHocTap.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\LichSuDiem.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\Lop.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\LopHocPhan.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\MonHoc.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\PhucKhao.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\SinhVien.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\TaiKhoan.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\ThongBao.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\model\TieuChiCanhCao.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\service\DangKyService.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\service\DangNhapService.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\DatabaseConnection.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\DiemUtil.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\PasswordUtil.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\SessionManager.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\util\UIThemeUtil.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmCanhCaoHocTap.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmDangKyHocPhan.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmDangKyTaiKhoan.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmDangNhap.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmKetQuaGPA.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmNhapDiem.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmPhucKhao.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLGiangVien.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLHocKy.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLLop.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLLopHocPhan.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLMonHoc.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLSinhVien.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmQLTaiKhoan.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmThongKeBaoCao.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmTraCuuDiem.java
+D:\javaketthuc\ketthuchocphan\src\main\java\com\mycompany\duanjavanangcao\view\FrmTrangChu.java

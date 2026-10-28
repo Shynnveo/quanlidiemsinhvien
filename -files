@@ -1,0 +1,12 @@
+[33mac9c1e9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m fist commit
+[33m4773ee6[m feat(ux): apply SwingWorker for background query execution in FrmThongKeBaoCao
+[33m6ae683d[m feat(ux): add busy cursor and debounce protection for login, grades, and registrations
+[33mc389666[m feat(ux): prevent duplicate child form instances in FrmTrangChu
+[33mcc7dde6[m feat(trangchu): replace sidebar button groups with JTree navigation
+[33mfbb490a[m feat(ui): align FrmDangNhap and FrmTrangChu layout with UTT portal design
+[33md738de2[m refactor(util): consolidate UTTButtonUI into UIThemeUtil and remove redundant file
+[33m8b63b8a[m fix(ui): remove unintended button text underline by using getDisplayedMnemonicIndex()
+[33m21920cc[m fix(ui): resolve button color rendering across all forms using UTTButtonUI delegate
+[33mfa32a37[m feat(trangchu): upgrade University Dashboard layout and UTT styling
+[33m5300a41[m feat(ui): complete SDD UI upgrade with UTT university portal style
+[33ma47470c[m Initial commit before SDD UI upgrade
